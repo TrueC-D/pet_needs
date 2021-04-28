@@ -1,0 +1,25 @@
+/* Style the header */
+header {
+    background-color: #666;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+  }
+  
+  /* Create two columns/boxes that floats next to each other */
+  nav {
+    float: left;
+    width: 30%;
+    /* height: 300px;  */
+    /* height is only for demonstration, should be removed */
+    background: #ccc;
+    padding: 20px;
+  }
+  
+  /* Style the list inside the menu */
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  /* nav bar & header layout copied from: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float */
