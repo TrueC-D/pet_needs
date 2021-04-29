@@ -10,8 +10,8 @@ header {
   /* Create two columns/boxes that floats next to each other */
   nav {
     float: left;
-    width: 30%;
-    /* height: 300px;  */
+    width: 15%;
+    /* height: 10%;  */
     /* height is only for demonstration, should be removed */
     background: #ccc;
     padding: 20px;
@@ -23,3 +23,55 @@ header {
     padding: 0;
   }
   /* nav bar & header layout copied from: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float */
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-right: 50px;
+  }
+
+  
+  div.card {
+    background-color: #eeeeee;
+    height: 250px;
+    width: 300px;
+    box-shadow: 10px 10px grey;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  p {
+    font-size: 1em;
+    color: black;
+    font-family: Helvetica;
+  }
+  
+  li {
+    font-size: 1.05em;
+    list-style: none;
+    padding-right: 20px;
+  }
+  
+  button {
+    font-size: .65em;
+    color: #fff;
+    background-color: green;
+    border-radius: 10px;
+  }
+  
+  button.release {
+    float: right;
+    background-color: #E1332D;
+  }
+
+  /* css copied from pokemon lab */
+
+  nav input {width: 100%}
+
+  div.hidden {display: none}
+ /*  instructions on how to hide and reveal things via css by hovering can be find here: https://alexcican.com/post/hide-and-show-div/#:~:text=In%20the%20CSS%20we%20will%20add%20two%20classes.,affect%20the%20span%20element%20inside%20the%20outer%20div. */
+  /* article {padding-left: 30px} this doesn't seem to work */

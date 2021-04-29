@@ -12,20 +12,20 @@
         </header>
         <section>
             <nav>
-                <ul id = 'user-links'>Users</ul>
+                <ul id = 'user-links'><strong>Users</strong></ul>
                 <!-- javascript will create a red x button to the right of user names to delete user -->
                 <form>
                     <label for = 'username'>Username:</label>
                     <br>
                     <input type = 'text' name = 'username'>
                     <br>
-                    <button type = 'submit'> 'Create User'</button>
+                    <button type = 'submit'>Create User</button>
                 </form>
             </nav>
             <article>
                 <h1 id= 'title'>Welcome To Your Pet Tracker!</h1>
                 <!-- should dynamically be populated and change to a different user's name each time a different user is selected in the navigation bar -->
-                <p>Click on a user's name to view their pets</p>
+                <p><em>Click on a user's name to view their pets<em></p>
                 <!-- javascript to make create pet button with pet attributes -->
                 <div class = 'hidden'>
                     <form>
@@ -35,7 +35,7 @@
                         <input type = 'text' name ='species'>
                         <label>Birthday: </label>
                         <input type = 'text' name ='birthday'>
-                        <button type = 'submit'> 'Create Pet</button>
+                        <button type = 'submit'>Create Pet</button>
                         <!-- javascript event listener will collect userame from article <h1 id = title> -->
                             <!-- question about bugs: is it possible that after selecting create pet, if a person clicks on a different username in the navigation bar that the new username would be attached to the pet instead?  That would require the new username to load first into the title section.  I would need to make sure that the title only loads when other things have finished loading -->
                     </form>
