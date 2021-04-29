@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ctitle: MyString
+  : MyString
+  description: MyText
+  date: 2021-04-28
+  time: 2021-04-28 17:17:19
+  pet: one
+
+two:
+  ctitle: MyString
+  : MyString
+  description: MyText
+  date: 2021-04-28
+  time: 2021-04-28 17:17:19
+  pet: two

@@ -1,0 +1,2 @@
+class NeedSelectionsController < ApplicationController
+end
