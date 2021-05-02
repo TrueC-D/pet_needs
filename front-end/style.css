@@ -11,7 +11,7 @@ header {
   nav {
     float: left;
     width: 15%;
-    /* height: 10%;  */
+    height: 100%; 
     /* height is only for demonstration, should be removed */
     background: #ccc;
     padding: 20px;
@@ -20,8 +20,16 @@ header {
   /* Style the list inside the menu */
   nav ul {
     list-style-type: none;
-    padding: 0;
+    padding-left: 0;
+    padding-bottom: 20px;
   }
+  nav li{
+    border-style: solid;
+    text-align: center;
+    padding: 10px;
+  }
+
+  nav li:hover{color: green}
   /* nav bar & header layout copied from: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float */
 
   main {
@@ -63,10 +71,10 @@ header {
     border-radius: 10px;
   }
   
-  button.release {
+  /* button.release {
     float: right;
     background-color: #E1332D;
-  }
+  } */
 
   /* css copied from pokemon lab */
 
@@ -75,3 +83,5 @@ header {
   div.hidden {display: none}
  /*  instructions on how to hide and reveal things via css by hovering can be find here: https://alexcican.com/post/hide-and-show-div/#:~:text=In%20the%20CSS%20we%20will%20add%20two%20classes.,affect%20the%20span%20element%20inside%20the%20outer%20div. */
   /* article {padding-left: 30px} this doesn't seem to work */
+
+  .clickable:hover {color: green}

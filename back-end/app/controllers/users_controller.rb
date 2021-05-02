@@ -14,10 +14,13 @@ class UsersController < ApplicationController
     end
 
     def create
-        if !User.find_by(name: params[:username])
-            user = User.create(name: params[:username])
-            options = {include: [:pets]}
-            render json: UserSerializer.new(user, options)
+        if User.find_by(name: 'params[:name]')
+            'username is already taken'
+        elsif params[:name].strip == ''
+            'must input username before submitting'
+        else
+            user = User.create(name: params[:name])
+            render json: UserSerializer.new(user)
         end       
     end
 
