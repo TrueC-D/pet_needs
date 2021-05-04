@@ -1,3 +1,5 @@
+// base URLs and initial loading code
+
 const BASE_URL = 'http://localhost:3000'
 const USERS_URL = `${BASE_URL}/users`
 const PETS_URL = `${BASE_URL}/pets`
@@ -7,10 +9,153 @@ const NEED_SELECTS_URL = `${BASE_URL}/need_selections`
 document.addEventListener('DOMContentLoaded', creatingUser)
 document.addEventListener('DOMContentLoaded', getUserData)
 
+// creating need selections
+
+function createNeedSelection(pet_id, title, description){
+    fetch(NEED_SELECTS_URL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({title: title, description: description, pet_id: pet_id})
+    }).then(response => response.json()).then(needSelect => console.log(needSelect))
+    // .then(needSelect => {
+        // const needSelectId = needSelect.data.id, 
+        // this.init(needSelectId)
+    // })
+
+}
+
+
+// creating a pet
+const petTypes = {Pet: Pet, AquaticSpecies: AquaticSpecies, LandAnimal: LandAnimal, PetWithACoat: PetWithACoat, Cat: Cat, Dog: Dog }
+
+function createPet(type = Pet, name, birthday, species, userId){
+    let newPet = new petTypes[type](nexitame, birthday, species, userId)d
+}
+
+let newPet = new Pet 
+
+// classes of pets
+
+//fetch should be a static function of pet that is initialized before the constructor.  See these links for more details: https://stackoverflow.com/questions/39394945/es6-classes-fetch-in-the-parent-class-refer-to-resolved-fetch-in-child-class ,  https://stackoverflow.com/questions/24398699/is-it-bad-practice-to-have-a-constructor-function-return-a-promise
+
+class Pet {
+    constructor(name, birthday, species, userId){
+        this.name = name
+        this.birthday = birthday
+        this.species = species
+        this.user_id = userId
+        this.create()
+    }
+    create(){
+          fetch(PETS_URL, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: this.name, birthday: this.birthday, species: this.species, user_id: this.user_id})
+        }).then(response => console.log(response.json()))
+        // .then(response => console.log(response.json()))
+        // .then(pet => {
+        //     // need to add pet to the DOM and initialize it's needs
+        //     const petId = pet.data.id
+        //     this.init(petId, this.needSelects())
+        // })
+
+    }
+
+    needSelects(){
+       const needSelects= [
+            { title: 'Feed', description: 'Every pet needs to be fed.'}, 
+        {title: 'Vet Visit', description: "Going to the vet is necessary for a pet's health. Some species require vets with special certifications."}]
+        return needSelects
+    }
+    
+    init(pet_id, needSelections) {
+        for(const needSelect of needSelections ){
+            // createNeedSelection(pet_id, needSelect.title, needSelect.description)
+
+            // setTimeout(createNeedSelection, 100)
+            this.addNeedSelect(pet_id, needSelect)
+
+            // setTimeout(this.addNeedSelect, 100)
+        }
+    }
+
+    addNeedSelect(pet_id, needSelect){
+        createNeedSelection(pet_id, needSelect.title, needSelect.description)
+        // necessary after initialization
+    }
+}
+
+class AquaticSpecies extends Pet {
+    needSelects(){
+        let newNeedSelects = [
+            {title: 'Clean Tank', description: "Changing the water in the tank and removing excess waste and algae will help marine life thrive."}, 
+            {title: 'Check chemical levels in tank.', description: "Tank water with the wrong pH levels, or water that is too high in high in nitrates, nitrites and ammonium can harm aquatic animals."},
+            {title: 'Turn On Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light on to start their morning."},
+            {title: 'Turn Off Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light off to start their evening."}
+        ]
+
+        const allNeedSelects = super.needSelects().concat(newNeedSelects)
+
+        return allNeedSelects
+        
+    }
+
+
+    addNeedSelect(){
+        super.addNeedSelect()
+    }
+    init(petId) {
+        super.init()
+    }
+}
+
+class LandAnimal extends Pet {
+    init(petId) {
+        super.init()
+        const waterInstance = new GiveWater(petId)
+    }
+}
+
+class PetWithACoat extends LandAnimal {
+    init(petId) {
+        super.init()
+        const groomInstance = new Groom(petId)
+    }
+}
+
+class Cat extends PetWithACoat {
+    constructor(name, birthday, userId){
+        super(name)
+        super(birthday)
+        this.species = 'Cat'
+        super(user_id)
+        this.create()
+    }
+
+
+    init(petId) {
+        super.init()
+        const litterInstance = new CleanLitterBox(petId)
+    }
+}
+
+class Dog extends PetWithACoat {
+    constructor(name, birthday, userId){
+        super(name)
+        super(birthday)
+        this.species = 'Dog'
+        super(user_id)
+        this.create()
+    }
+    init(petId) {
+        super.init()
+        const walkInstance = new Walk(petId)
+    }
+}
+
+//  functions to manipulate DOM
 
 function getUserData(){
-
-    // fetch(USERS_URL).then(response => response.json()).then(users => {for(const user in users.data){console.log(user)}})  I don't understant why but this version only gave me the index number when requested console.log(user)
     
     fetch(USERS_URL).then(response => response.json()).then(users => {
         const newArr = [... users.data]
@@ -19,7 +164,6 @@ function getUserData(){
 }
 
 function creatingUser(){
-    console.log('inside the createUser method!')
     const createUserForm = document.querySelector('nav').querySelector('form')
     const createButton = createUserForm.querySelector('button')
     

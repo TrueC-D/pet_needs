@@ -15,12 +15,10 @@ class PetsController < ApplicationController
     end
 
     def create
-        user = User.find_by(id: params[:user])
-        if user && !(Pet.find_by(name: params[:pet_name]))
-            pet = Pet.create(name: pet_name, species: species, birthday: birthday, user_id: user.id)
-            options = {include: [:user]}
-            is this the correct way to write it?
-            render json: PetSerializer.new(pet, options)
+        user = User.find_by(id: params[:user_id])
+        if user && !(Pet.find_by(name: params[:name]))
+            pet = Pet.create(name: params[:name], species: params[:species], birthday: params[:birthday], user_id: params[:user_id]).setTimeOut()
+            render json: PetSerializer.new(pet)
         end
     end
 

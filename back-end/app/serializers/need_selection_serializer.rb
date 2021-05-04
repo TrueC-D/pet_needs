@@ -1,4 +1,4 @@
 class NeedSelectionSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :title, :description, :pet_id
 end

@@ -1,6 +1,6 @@
 class NeedSelectionsController < ApplicationController
     def index
-        need_selects = NeeedSelection.all
+        need_selects = NeedSelection.all
         render json: NeedSelectionSerializer.new(need_selects)
     end
 
@@ -10,9 +10,10 @@ class NeedSelectionsController < ApplicationController
     end
 
     def create
-        pet = Pet.find_by(name: params[:pet_name])
+        pet = Pet.find_by(id: params[:pet_id])
         if !!pet
-            need_select = NeedSelection.new(title: title, description: description, pet_id: pet.id)
+            need_select = NeedSelection.create(title: params[:title], description: params[:description], pet_id: params[:pet_id])
+            render json: NeedSelectionSerializer.new(need_select)
         end
     end
 
