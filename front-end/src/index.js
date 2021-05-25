@@ -26,13 +26,13 @@ function createNeedSelection(pet_id, title, description){
 
 
 // creating a pet
-const petTypes = {Pet: Pet, AquaticSpecies: AquaticSpecies, LandAnimal: LandAnimal, PetWithACoat: PetWithACoat, Cat: Cat, Dog: Dog }
+// const petTypes = {Pet: Pet, AquaticSpecies: AquaticSpecies, LandAnimal: LandAnimal, PetWithACoat: PetWithACoat, Cat: Cat, Dog: Dog }
 
-function createPet(type = Pet, name, birthday, species, userId){
-    let newPet = new petTypes[type](nexitame, birthday, species, userId)d
-}
+// function createPet(type = Pet, name, birthday, species, userId){
+//     let newPet = new petTypes[type](nexitame, birthday, species, userId)
+// }
 
-let newPet = new Pet 
+// let newPet = new Pet 
 
 // classes of pets
 
@@ -44,9 +44,8 @@ class Pet {
         this.birthday = birthday
         this.species = species
         this.user_id = userId
-        this.create()
     }
-    create(){
+    static create(){
           fetch(PETS_URL, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -86,6 +85,7 @@ class Pet {
 }
 
 class AquaticSpecies extends Pet {
+
     needSelects(){
         let newNeedSelects = [
             {title: 'Clean Tank', description: "Changing the water in the tank and removing excess waste and algae will help marine life thrive."}, 
@@ -110,6 +110,8 @@ class AquaticSpecies extends Pet {
 }
 
 class LandAnimal extends Pet {
+
+
     init(petId) {
         super.init()
         const waterInstance = new GiveWater(petId)
@@ -156,6 +158,8 @@ class Dog extends PetWithACoat {
 //  functions to manipulate DOM
 
 function getUserData(){
+
+    console.log("inside getUserData function")
     
     fetch(USERS_URL).then(response => response.json()).then(users => {
         const newArr = [... users.data]
@@ -208,6 +212,16 @@ function deleteLi(event){
     const liModel = liId.split('-')[0]
     const itemId = liId.split('-')[1]
     
+    console.log('deleteLi event is:')
+    console.log(event)
+    console.log('baseurl is: ')
+    console.log(BASE_URL)
+    console.log('liModel is:')
+    console.log(liModel)
+    console.log('itemId is:')
+    console.log(itemId)
+
+
     fetch(`${BASE_URL}/${liModel}s/${itemId}`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}

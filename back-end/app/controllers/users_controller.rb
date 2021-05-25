@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     def destroy
         # stretch goal: edit this so that it will remove all the pets and needs as well when the user is deleted (don't want to clutter database)
-        render json: User.find_by(id: params[:id]).destroy
+        render json: User.find(params[:id]).destroy
     end
     # user is initialized with a name
     # index page to select a user
