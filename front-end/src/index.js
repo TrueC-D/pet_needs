@@ -69,10 +69,25 @@ class Pet {
         // should be able to edit need selects
     // }
 
-    // set needSelects(needSelJson){
-        // should be able to edit need selects
+    
 
-    // }
+    set needSelects(needSelJson){
+        // should be able to edit need selects
+        const needSels = []
+        for(const needSelect of needSelJson){
+            // const needTitle = needSelect... something
+            // const needDescription = needSelect... something
+
+            const needSel = {title: needTitle, description: needDescription}
+            needSels.push()
+
+        }
+
+    }
+
+    addToNeedSelects(title, description){
+        this.needSelects.push({title: title, description: description})
+    }
 
     initNeedSelects(){
         // this returns an array of needselects that are created on initialization
@@ -84,16 +99,17 @@ class Pet {
         // stretch goal, add & remove need selects
     }
 
-    init(pet_id, needSelections){
+    init(pet_id, initNeedSelections){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item
         for(const needSelect of needSelections){
             this.addNeedSelect(pet_id, needSelect)
         }
     }
 
-    addNeedSelect(pet_id, needSelect){
+    createNeedSel(pet_id, needSelect){
         // this calls the function that has the fetch request for the needselect.  This can be used for adding individual needs later.
         createNeedSelection(pet_id, needSelect.title, needSelect.description)
+        this.addToNeedSelects(needSelect.title, needSelect.description)
     }
 }
 
