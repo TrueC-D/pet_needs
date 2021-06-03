@@ -94,7 +94,6 @@ class Pet {
 
      get needSelects(){
          return this.needSelects
-        // should be able to edit need selects
     }
 
     addToNeedSelects(title, description){
