@@ -13,7 +13,17 @@ function getPets(){
     // 
 }
 
-function createPetCard(){
+const cardDeck = document.getElementById('card-deck')
+// this is where i store the cards in the index.html ->maybe i put this in a div instead
+
+function createPetCard(pet){
+    const card = document.createElement('div')
+    card.setAttribute('data-id', pet.id)
+    // maybe will write this differently
+    card.setAttribute('class', 'card')
+    cardDeck.appendChild(card)
+
+    const 
     // should be used with fetch for each pet found and for any new peets
     // delete pet button
     // delete li button should be usable 
