@@ -221,16 +221,6 @@ function deleteLi(event){
     const liModel = liId.split('-')[0]
     const itemId = liId.split('-')[1]
     
-    console.log('deleteLi event is:')
-    console.log(event)
-    console.log('baseurl is: ')
-    console.log(BASE_URL)
-    console.log('liModel is:')
-    console.log(liModel)
-    console.log('itemId is:')
-    console.log(itemId)
-
-
     fetch(`${BASE_URL}/${liModel}s/${itemId}`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'}
