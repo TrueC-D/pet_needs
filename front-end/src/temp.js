@@ -1,3 +1,8 @@
+const cardDeck = document.getElementById('card-deck')
+// this is where i store the cards in the index.html ->maybe i put this in a div instead
+// would move this to the top of the file if i need this in multiple functions
+
+
 function loadUserPage(){
     // should convert remove hidden class from create pet form
     // should call method to create pet cards
@@ -13,8 +18,6 @@ function getPets(){
     // 
 }
 
-const cardDeck = document.getElementById('card-deck')
-// this is where i store the cards in the index.html ->maybe i put this in a div instead
 
 function createPetCard(pet){
     const card = document.createElement('div')
@@ -59,8 +62,8 @@ function createPetCard(pet){
     // stretch goal: need to create submit feature and grab dropdown element with other parts of form.
 
     // for future developments: const needList = 
+    // this would call a list fetched of all the needs that are currently on the schedule
 
-    for (const need of )
     // should be used with fetch for each pet found and for any new peets
     // delete pet button
     // delete li button should be usable 
