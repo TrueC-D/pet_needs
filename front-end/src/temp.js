@@ -10,8 +10,11 @@ function loadUserPage(){
 }
 
 function getPets(){
-    fetch(PETS_URL).then(response => response.json()).then(pet => console.log(pet))
-    // .then
+    fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
+    // .then(pets => {
+        makePetObjects(pets.something)
+        
+    // })
     // https://stackoverflow.com/questions/37928113/mapping-json-to-es6-classes
     // the above link shows how to parse jason to get values for new Pet
     // fetch and... create pet javascript object?
@@ -27,9 +30,10 @@ function makePetObjects(pets){
         // const petBirth = 
         // const petSpecies = 
         // const petUserId =
-        // 
+        // const needSels =
         
        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
+       thisPet.needSelects(needSels)
     }
 }
 
