@@ -10,6 +10,8 @@ function loadUserPage(){
 }
 
 function getPets(){
+    fetch(PETS_URL).then(response => response.json()).then(pet => console.log(pet))
+    // .then
     // https://stackoverflow.com/questions/37928113/mapping-json-to-es6-classes
     // the above link shows how to parse jason to get values for new Pet
     // fetch and... create pet javascript object?
@@ -18,16 +20,16 @@ function getPets(){
     // 
 }
 
-function createPetObject(pets){
+function makePetObjects(pets){
     // in the future, may have to create a different class so that pet object features can be populated as altered from their originally initialized state. -> needSelects would be different.
     for (const pet of pets){
         // const petName = 
         // const petBirth = 
         // const petSpecies = 
         // const petUserId =
+        // 
         
-       const thisPet = new Pet (petName)
-        
+       const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
     }
 }
 
@@ -62,10 +64,9 @@ function createPetCard(pet){
 
     const nullOption = document.createElement('option')
     nullOption.value = ""
-    nullOption.appendChild(needDropdown)
+    needDropdown.appendChild(nullOption)
 
     const needSels = pet.needSelects
-    // may need to change this to be a fetch request
 
     for (const needSel of NeedSels){
         // may need to create new variables from fetch request
@@ -74,6 +75,9 @@ function createPetCard(pet){
         newOption.innerText = `${needSel.title}; ${needSel.description}`
         newOption.appendChild(needDropdown)
     }
+
+
+
     // stretch goal: need to create submit feature and grab dropdown element with other parts of form.
 
     // for future developments: const needList = 
