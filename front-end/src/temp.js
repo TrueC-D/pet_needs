@@ -20,19 +20,32 @@ class Pet {
         // may need to fetch need selects here as well
         // createNeedSelectionMethod does this which is called in addNeedSelection which is called in init
         // what may potentially work is below:
-        // .then(pet => this.init(pet.data.id), needSelects)
+        // .then(pet => this.init(pet.data.id, this.needSelects))
     }
             
 
         // }
     
-    }
+    
 
     needSelects(){
+        // this returns an array of needselects that are created on initialization
         const needSelects = [
             {title: 'Feed', description: 'Every pet needs to be fed.'},
             {title: 'Vet Visit', description: "Going to the vet is necessary for a pet's health. Some species require vets with special certifications."}
         ]
         return needSelects
+    }
+
+    init(pet_id, needSelections){
+        // this creates the default needSelections that every pet should have
+        for(const needSelect of needSelections){
+            this.addNeedSelect(pet_id, needSelect)
+        }
+    }
+
+    addNeedSelect(pet_id, needSelect){
+        // this calls the function that has the fetch request for the needselect
+        createNeedSelection(pet_id, needSelect.title, needSelect.description)
     }
 }
