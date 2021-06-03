@@ -75,6 +75,7 @@ class Pet {
             {title: 'Vet Visit', description: "Going to the vet is necessary for a pet's health. Some species require vets with special certifications."}
         ]
         return needSelects
+        // stretch goal, add & remove need selects
     }
 
     init(pet_id, needSelections){

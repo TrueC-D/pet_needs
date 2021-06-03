@@ -23,7 +23,20 @@ function createPetCard(pet){
     card.setAttribute('class', 'card')
     cardDeck.appendChild(card)
 
-    const 
+    const petName = document.createElement('h5')
+    petName.innerText = pet.name
+    card.appendChild(petName)
+
+    const needDropdown = document.createElement(select)
+    needDropdown.setAttribute('id', 'need-dropdown')
+     
+    const needSelectsNow = pet.needSelects
+
+    // stretch goal: need to create submit feature and grab dropdown element with other parts of form.
+
+    // for future developments: const needList = 
+
+    for (const need of )
     // should be used with fetch for each pet found and for any new peets
     // delete pet button
     // delete li button should be usable 
