@@ -27,11 +27,27 @@ function createPetCard(pet){
     petName.innerText = pet.name
     card.appendChild(petName)
 
+    const selectLabel = document.createElement('label')
+    selectLabel.innerText = 'Create Need From Saved Needs:'
+    card.appendChild(selectLabel)
+    
+
     const needDropdown = document.createElement(select)
     needDropdown.setAttribute('id', 'need-dropdown')
-     
-    const needSelectsNow = pet.needSelects
+    selectLabel.appendChild(needDropdown)
 
+    const nullOption = document.createElement('option')
+    nullOption.value = ""
+    nullOption.appendChild(needDropdown)
+
+    const needSels = pet.needSelects
+
+    for (const needSel of NeedSels){
+        const newOption = document.createElement('option')
+        newOption.value = needSel.title
+        newOption.innerText = `${needSel.title}; ${needSel.description}`
+        newOption.appendChild(needDropdown)
+    }
     // stretch goal: need to create submit feature and grab dropdown element with other parts of form.
 
     // for future developments: const needList = 
