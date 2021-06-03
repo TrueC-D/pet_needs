@@ -18,6 +18,25 @@ function getPets(){
     // 
 }
 
+function createPetObject(pets){
+    // in the future, may have to create a different class so that pet object features can be populated as altered from their originally initialized state. -> needSelects would be different.
+    for (const pet of pets){
+        // const petName = 
+        // const petBirth = 
+        // const petSpecies = 
+        // const petUserId =
+        
+        if(petSpecies === 'Cat'){
+            const thisPet = new Cat(petName)
+        }else if(petSpecies === 'Dog') {
+            const thisPet = new Dog()
+        } else{
+            const thisPet = new Pet (petName)
+        }
+        
+    }
+}
+
 
 function createPetCard(pet){
     const card = document.createElement('div')
@@ -52,8 +71,10 @@ function createPetCard(pet){
     nullOption.appendChild(needDropdown)
 
     const needSels = pet.needSelects
+    // may need to change this to be a fetch request
 
     for (const needSel of NeedSels){
+        // may need to create new variables from fetch request
         const newOption = document.createElement('option')
         newOption.value = needSel.title
         newOption.innerText = `${needSel.title}; ${needSel.description}`

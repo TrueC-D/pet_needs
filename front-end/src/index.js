@@ -65,10 +65,16 @@ class Pet {
             
 
         // }
-    
-    
+    // get needSelects(){
+        // should be able to edit need selects
+    // }
 
-    needSelects(){
+    // set needSelects(needSelJson){
+        // should be able to edit need selects
+
+    // }
+
+    NeedSelects(){
         // this returns an array of needselects that are created on initialization
         const needSelects = [
             {title: 'Feed', description: 'Every pet needs to be fed.'},
@@ -91,21 +97,22 @@ class Pet {
     }
 }
 
-class AquaticSpecies extends Pet {
-    needSelect(){
-        let newNeedSelects = [  
-            {title: 'Clean Tank', description: "Changing the water in the tank and removing excess waste and algae will help marine life thrive."},
-            {title: 'Check chemical levels in tank.', description: "Tank water with the wrong pH levels, or water that is too high in high in nitrates, nitrites and ammonium can harm aquatic animals."},
-            {title: 'Turn On Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light on to start their morning."},
-            {title: 'Turn Off Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light off to start their evening."}
-        ]
-        const allNeedSelects = super.needSelects().concat(newNeedSelects)
+// class AquaticSpecies extends Pet {
+    // would be more complicated to fetch and ascertain that a species is aquatic from json api without adding new table.  Could adjust this later
+//     needSelect(){
+//         let newNeedSelects = [  
+//             {title: 'Clean Tank', description: "Changing the water in the tank and removing excess waste and algae will help marine life thrive."},
+//             {title: 'Check chemical levels in tank.', description: "Tank water with the wrong pH levels, or water that is too high in high in nitrates, nitrites and ammonium can harm aquatic animals."},
+//             {title: 'Turn On Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light on to start their morning."},
+//             {title: 'Turn Off Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light off to start their evening."}
+//         ]
+//         const allNeedSelects = super.needSelects().concat(newNeedSelects)
 
-        return allNeedSelects
-    }
+//         return allNeedSelects
+//     }
 
-    // init, create, and addNeedSelect methods shouldbe included by extension
-}
+//     // init, create, and addNeedSelect methods shouldbe included by extension
+// }
 
 class LandAnimal extends Pet {
     needSelects(){
