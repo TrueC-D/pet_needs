@@ -60,7 +60,7 @@ class Pet {
         // may need to fetch need selects here as well
         // createNeedSelectionMethod does this which is called in addNeedSelection which is called in init
         // what may potentially work is below:
-        // .then(pet => this.init(pet.data.id, this.needSelects))
+        // .then(pet => this.init(pet.data.id, this.initNeedSelects))
     }
             
 
@@ -74,7 +74,7 @@ class Pet {
 
     // }
 
-    NeedSelects(){
+    initNeedSelects(){
         // this returns an array of needselects that are created on initialization
         const needSelects = [
             {title: 'Feed', description: 'Every pet needs to be fed.'},
@@ -115,7 +115,7 @@ class Pet {
 // }
 
 class LandAnimal extends Pet {
-    needSelects(){
+    initNeedSelects(){
         let newNeedSelects = [
             {title: 'Give Water', description: "Pets that don't live in water need to drink water to stay hydrated."}
         ]
@@ -126,7 +126,7 @@ class LandAnimal extends Pet {
 }
 
 class PetWithACoat extends LandAnimal {
-    needSelects(){
+    initNeedSelects(){
         let newNeedSelects = [
             {title: 'Groom', description: "Grooming prevents matts from developing, prevents rashes and infection."}
         ]
@@ -144,7 +144,7 @@ class Cat extends PetWithACoat {
         this.species = 'Cat'
     }
 
-    needSelects(){
+    initNeedSelects(){
         let newNeedSelects = [
             {title: 'Clean Litter Box', description: "A clean litter box helps prevent a messy house and sanitary living environment."}
         ]
@@ -162,7 +162,7 @@ class Dog extends PetWithACoat {
         this.species = 'Dog'
     }
 
-    needSelects(){
+    initNeedSelects(){
         let newNeedSelects = [
             {title: 'Go On Walk', description: "Excercise is a must half for a healthy animal."}
         ]
