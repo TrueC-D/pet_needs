@@ -6,7 +6,7 @@ class Pet {
         this.user_id = userId
     }
 
-    static create(){
+    static createThis(){
         fetch(PETS_URL, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

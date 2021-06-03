@@ -193,8 +193,8 @@ function createUserLi(user){
     userLink.setAttribute('id', `user-${user.id}`)
     userLink.innerText = user.attributes.name
     document.getElementById('user-links').appendChild(userLink)
-
     createDeleteLiButton('user', user.id)
+    userLink.addEventListener('click', loadPets)
 }
 
 function createDeleteLiButton(modelName, itemId){
@@ -228,6 +228,8 @@ function deleteLi(event){
     }).then(response => response.json()).then(liToDelete
         .remove())
 }
+
+function loadPets(){}
         
 
 // Initial fetch request:
