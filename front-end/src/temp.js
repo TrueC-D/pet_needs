@@ -12,7 +12,7 @@ function loadUserPage(){
 function getPets(){
     fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
     // .then(pets => {
-        makePetObjects(pets.something)
+        // makePetObjects(pets.something)
         
     // })
     // https://stackoverflow.com/questions/37928113/mapping-json-to-es6-classes
