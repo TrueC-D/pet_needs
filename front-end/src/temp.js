@@ -27,6 +27,14 @@ function createPetCard(pet){
     petName.innerText = pet.name
     card.appendChild(petName)
 
+    const petSpecies = document.createElement('p')
+    petSpecies.innerText = `Species: ${pet.description}`
+    card.appendChild(petSpecies)
+
+    const petBirth = document.createElement('p')
+    petBirth.innerText = `Birthday: ${pet.birthday}`
+    card.appendChild(petBirth)
+    
     const selectLabel = document.createElement('label')
     selectLabel.innerText = 'Create Need From Saved Needs:'
     card.appendChild(selectLabel)
