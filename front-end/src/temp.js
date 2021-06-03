@@ -26,13 +26,7 @@ function createPetObject(pets){
         // const petSpecies = 
         // const petUserId =
         
-        if(petSpecies === 'Cat'){
-            const thisPet = new Cat(petName)
-        }else if(petSpecies === 'Dog') {
-            const thisPet = new Dog()
-        } else{
-            const thisPet = new Pet (petName)
-        }
+       const thisPet = new Pet (petName)
         
     }
 }

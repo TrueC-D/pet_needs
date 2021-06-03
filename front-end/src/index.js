@@ -108,8 +108,7 @@ class Pet {
 }
 
 class AquaticSpecies extends Pet {
-    would be more complicated to fetch and ascertain that a species is aquatic from json api without adding new table.  Could adjust this later
-    needSelect(){
+    initNeedSelects(){
         let newNeedSelects = [  
             {title: 'Clean Tank', description: "Changing the water in the tank and removing excess waste and algae will help marine life thrive."},
             {title: 'Check chemical levels in tank.', description: "Tank water with the wrong pH levels, or water that is too high in high in nitrates, nitrites and ammonium can harm aquatic animals."},
@@ -120,8 +119,6 @@ class AquaticSpecies extends Pet {
 
         return allNeedSelects
     }
-
-    // init, create, and addNeedSelect methods shouldbe included by extension
 }
 
 class LandAnimal extends Pet {
