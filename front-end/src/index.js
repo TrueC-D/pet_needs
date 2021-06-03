@@ -44,6 +44,7 @@ class Pet {
         this.birthday = birthday
         this.species = species
         this.user_id = userId
+        this.needSelects = []
     }
 
     static createThis(){
@@ -62,32 +63,7 @@ class Pet {
         // what may potentially work is below:
         // .then(pet => this.init(pet.data.id, this.initNeedSelects))
     }
-            
 
-        // }
-    // get needSelects(){
-        // should be able to edit need selects
-    // }
-
-    
-
-    set needSelects(needSelJson){
-        // should be able to edit need selects
-        const needSels = []
-        for(const needSelect of needSelJson){
-            // const needTitle = needSelect... something
-            // const needDescription = needSelect... something
-
-            const needSel = {title: needTitle, description: needDescription}
-            needSels.push()
-
-        }
-
-    }
-
-    addToNeedSelects(title, description){
-        this.needSelects.push({title: title, description: description})
-    }
 
     initNeedSelects(){
         // this returns an array of needselects that are created on initialization
@@ -101,9 +77,28 @@ class Pet {
 
     init(pet_id, initNeedSelections){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item
-        for(const needSelect of needSelections){
+        for(const needSelect of initNeedSelections){
             this.addNeedSelect(pet_id, needSelect)
         }
+    }
+
+    set needSelects(needSelsJson){
+        // you want to set this instead of initializing when you are pulling from an already established pet
+        for(const needSelect of needSelsJson){
+            // const needTitle = needSelect... something
+            // const needDescription = needSelect... something
+            this.addToNeedSelects(needTitle, needDescription)
+        }
+
+    }
+
+     get needSelects(){
+         return this.needSelects
+        // should be able to edit need selects
+    }
+
+    addToNeedSelects(title, description){
+        this.needSelects.push({title: title, description: description})
     }
 
     createNeedSel(pet_id, needSelect){
@@ -113,22 +108,22 @@ class Pet {
     }
 }
 
-// class AquaticSpecies extends Pet {
-    // would be more complicated to fetch and ascertain that a species is aquatic from json api without adding new table.  Could adjust this later
-//     needSelect(){
-//         let newNeedSelects = [  
-//             {title: 'Clean Tank', description: "Changing the water in the tank and removing excess waste and algae will help marine life thrive."},
-//             {title: 'Check chemical levels in tank.', description: "Tank water with the wrong pH levels, or water that is too high in high in nitrates, nitrites and ammonium can harm aquatic animals."},
-//             {title: 'Turn On Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light on to start their morning."},
-//             {title: 'Turn Off Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light off to start their evening."}
-//         ]
-//         const allNeedSelects = super.needSelects().concat(newNeedSelects)
+class AquaticSpecies extends Pet {
+    would be more complicated to fetch and ascertain that a species is aquatic from json api without adding new table.  Could adjust this later
+    needSelect(){
+        let newNeedSelects = [  
+            {title: 'Clean Tank', description: "Changing the water in the tank and removing excess waste and algae will help marine life thrive."},
+            {title: 'Check chemical levels in tank.', description: "Tank water with the wrong pH levels, or water that is too high in high in nitrates, nitrites and ammonium can harm aquatic animals."},
+            {title: 'Turn On Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light on to start their morning."},
+            {title: 'Turn Off Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light off to start their evening."}
+        ]
+        const allNeedSelects = super.needSelects().concat(newNeedSelects)
 
-//         return allNeedSelects
-//     }
+        return allNeedSelects
+    }
 
-//     // init, create, and addNeedSelect methods shouldbe included by extension
-// }
+    // init, create, and addNeedSelect methods shouldbe included by extension
+}
 
 class LandAnimal extends Pet {
     initNeedSelects(){
@@ -157,6 +152,7 @@ class Cat extends PetWithACoat {
         super(name)
         super(birthday)
         super(user_id)
+        super(needSelects)
         this.species = 'Cat'
     }
 
@@ -175,6 +171,7 @@ class Dog extends PetWithACoat {
         super(name)
         super(birthday)
         super(user_id)
+        super(needSelects)
         this.species = 'Dog'
     }
 
