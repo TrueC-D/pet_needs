@@ -57,11 +57,18 @@ class Pet {
                 species: this.species, 
                 user_id: this.user_id
             })
-        }).then(response => response.json()).then(pet=> {console.log(pet)})
+        }).then(response => response.json()).then(pet=> {
+            this.petId(pet.data.id)
+        })
         // may need to fetch need selects here as well
         // createNeedSelectionMethod does this which is called in addNeedSelection which is called in init
         // what may potentially work is below:
         // .then(pet => this.init(pet.data.id, this.initNeedSelects))
+    }
+
+    petId(id = null){
+        if(id){ this.petId = id}
+        return this.petId
     }
 
 
@@ -75,11 +82,11 @@ class Pet {
         // stretch goal, add & remove need selects
     }
 
-    init(pet_id, initNeedSelections){
+    init(){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item
-        for(const needSelect of initNeedSelections){
-            this.addToNeedSelects(pet_id, needSelect)
-            this.createNeedSel(pet_id, needSelect)
+        for(const needSelect of this.initNeedSelections){
+            this.createNeedSel(this.petId, needSelect)
+            this.addToNeedSelects(this.petId, needSelect)
         }
     }
 
