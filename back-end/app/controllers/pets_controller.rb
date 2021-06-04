@@ -17,7 +17,7 @@ class PetsController < ApplicationController
     def create
         user = User.find_by(id: params[:user_id])
         if user && !(Pet.find_by(name: params[:name]))
-            pet = Pet.create(name: params[:name], species: params[:species], birthday: params[:birthday], user_id: params[:user_id]).setTimeOut()
+            pet = Pet.create(name: params[:name], species: params[:species], birthday: params[:birthday], user_id: params[:user_id])
             render json: PetSerializer.new(pet)
         end
     end

@@ -47,7 +47,7 @@ class Pet {
         this.needSelects = []
     }
 
-    static createThis(){
+    createThis(){
         fetch(PETS_URL, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -57,7 +57,7 @@ class Pet {
                 species: this.species, 
                 user_id: this.user_id
             })
-        }).then(response => response.json()).then(pet=> console.log(pet))
+        }).then(response => response.json()).then(pet=> {console.log(pet)})
         // may need to fetch need selects here as well
         // createNeedSelectionMethod does this which is called in addNeedSelection which is called in init
         // what may potentially work is below:
@@ -78,22 +78,20 @@ class Pet {
     init(pet_id, initNeedSelections){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item
         for(const needSelect of initNeedSelections){
-            this.addNeedSelect(pet_id, needSelect)
+            this.addToNeedSelects(pet_id, needSelect)
+            this.createNeedSel(pet_id, needSelect)
         }
     }
 
-    set needSelects(needSelsJson){
+      addNeedSelectsFromJson(needSelsJson){
         // you want to set this instead of initializing when you are pulling from an already established pet
+        if(needSelsJson){
         for(const needSelect of needSelsJson){
             // const needTitle = needSelect... something
             // const needDescription = needSelect... something
             this.addToNeedSelects(needTitle, needDescription)
-        }
+        }}
 
-    }
-
-     get needSelects(){
-         return this.needSelects
     }
 
     addToNeedSelects(title, description){
