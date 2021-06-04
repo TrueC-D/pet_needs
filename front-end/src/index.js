@@ -86,11 +86,10 @@ class Pet {
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item
         for(const needSelect of this.initNeedSelections){
             this.createNeedSel(this.petId, needSelect)
-            this.addToNeedSelects(this.petId, needSelect)
         }
     }
 
-      addNeedSelectsFromJson(needSelsJson){
+    addNeedSelectsFromJson(needSelsJson){
         // you want to set this instead of initializing when you are pulling from an already established pet
         if(needSelsJson){
         for(const needSelect of needSelsJson){
@@ -105,9 +104,9 @@ class Pet {
         this.needSelects.push({title: title, description: description})
     }
 
-    createNeedSel(pet_id, needSelect){
+    createNeedSel(needSelect){
         // this calls the function that has the fetch request for the needselect.  This can be used for adding individual needs later.
-        createNeedSelection(pet_id, needSelect.title, needSelect.description)
+        createNeedSelection(this.petId, needSelect.title, needSelect.description)
         this.addToNeedSelects(needSelect.title, needSelect.description)
     }
 }
