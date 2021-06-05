@@ -24,7 +24,7 @@ function loadUserPage(userId){
 
     for(const petId of petIds){
         const pet =  getPet(petId)
-        makePetJSObjects(pet)
+        // makePetJSObjects(pet)
         // need to convert both of these functions to call on singular pets.
     }  
     
@@ -94,8 +94,11 @@ function makePetJSObjects(pet){
         
         
        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
+       console.log('thisPet')
        console.log(thisPet)
        thisPet.petId(pet_id)
+       console.log('thisPet.petId')
+       console.log(thisPet.petId)
     //    thisPet.needSelects(needSels)
     //    createPetCard(thisPet)
     
