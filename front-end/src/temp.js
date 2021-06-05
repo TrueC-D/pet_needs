@@ -9,34 +9,37 @@ function loadUserPage(){
     // should 
 }
 
-function getNeedSels(){
+function getNeedSel(){
     fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
 }
 
 function getPets(){
     fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
-    // .then(pets => {
-        // makePetObjects(pets.something)
-        
-    // })
-    // https://stackoverflow.com/questions/37928113/mapping-json-to-es6-classes
-    // the above link shows how to parse jason to get values for new Pet
-    // fetch and... create pet javascript object?
-    // pet = new Pet for each
-    // store need selections?  if already created, do not need to initialize need selections but do need to fetch need selections
-    // 
 }
 
 function makePetJSObjects(pets){
-    // in the future, may have to create a different class so that pet object features can be populated as altered from their originally initialized state. -> needSelects would be different.
+    // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
     for (const pet of pets){
         // const pet_id = 
         // const petName = 
         // const petBirth = 
         // const petSpecies = 
         // const petUserId =
-        // const needSelIds = 
-        // const needSels = 
+        const needSelIds = []
+        for(const needSelData in pet.relationships.need_selections){
+            const needSelId = needSelData.data.id
+            needSelIds.push(needSelId)
+        }
+        const needSels = []
+        for(const needSelId of needSelIds){
+            const needSel = getNeedSel(id)
+            // const title = needSel.title
+            // const description = needSel.description
+            // const needSelInfo = {title: title, desciption: description}
+            // needSels.push(needSelInfo)
+            needSels.push(needSel)
+        }
+        
         
        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
        thisPet.petId(pet_id)
