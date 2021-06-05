@@ -4,34 +4,6 @@
 
 function clearCardDeck(){}
 
-function loadUserPage(userId){
-    // clearCardDeck()
-    const articleTitle = document.getElementById('title')
-    const userData = getUser(userId) 
-    const userAttr = userData.attributes
-    const userName = userAttr.name
-    const userRel = userData.relationships
-    const petIds = []
-    for(const pet in userRel){
-        const petId = pet.data.id
-        petIds.push(petId)
-    }
-
-    articleTitle.innerText = `${userName}'s Pets`
-
-    const createPetForm = document.getElementById('create-pet')
-    createPetForm.removeAttribute('class')
-
-    for(const petId of petIds){
-        const pet =  getPet(petId)
-        // makePetJSObjects(pet)
-        // need to convert both of these functions to call on singular pets.
-    }  
-    
-    // should convert remove hidden class from create pet form
-    // need to put id on article to match user-> this way the page "knows" what user info it's populating 
-}
-
 
 function makePetJSObjects(pet){
     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.

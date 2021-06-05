@@ -197,8 +197,8 @@ function createNeedSelection(pet_id, title, description){
 
 //  Simple Fetch Requests
 
-function getUser(userId){
-    fetch(`${USERS_URL}/${userId}`).then(response => response.json()).then(user => {return user.data})
+function getUser(userId, someFunc ){
+    fetch(`${USERS_URL}/${userId}`).then(response => response.json()).then(user => {someFunc(user.data)})
 }
 
 function getNeedSel(needSelId){
@@ -259,7 +259,7 @@ function createUserLi(user){
     userLink.innerText = user.attributes.name
     document.getElementById('user-links').appendChild(userLink)
     createDeleteLiButton('user', user.id)
-    userLink.addEventListener('click', loadPets)
+    userLink.addEventListener('click', function(){loadUserPage(user.id)})
 }
 
 function createDeleteLiButton(modelName, itemId){
@@ -284,7 +284,53 @@ function deleteLi(event){
         .remove())
 }
 
-function loadPets(){}
+// function dataCollect(data){
+    
+//     const dataCollection = []
+//     function dataUpdate(data){
+//         dataCollection.push(data)
+//     }
+//     getUser(userId, dataUpdate)
+//     return dataCollection
+// }
+
+
+function loadUserPage(userId){
+    // clearCardDeck()
+    const articleTitle = document.getElementById('title')
+    const dataCollect = []
+    // console.log('dataCollect')
+    // console.log(dataCollect)
+    function dataCollection(data){
+        dataCollect.push(data)
+        const userData = dataCollect[0]
+        const userAttr = userData.attributes
+        const userName = userAttr.name
+        const userRel = userData.relationships
+        const pets = userRel.pets.data
+        const petIds = []
+        for(const pet of pets){
+            const petId = pet.id
+            petIds.push(petId)
+        }
+        
+        articleTitle.innerText = `${userName}'s Pets`
+        
+        // const createPetForm = document.getElementById('create-pet')
+        // createPetForm.removeAttribute('class')
+        
+        // for(const petId of petIds){
+        //     const pet =  getPet(petId)
+        //     // makePetJSObjects(pet)
+        //     // need to convert both of these functions to call on singular pets.
+        // }  
+            
+        // should convert remove hidden class from create pet form
+        // need to put id on article to match user-> this way the page "knows" what user info it's populating 
+    }
+    
+    getUser(userId, dataCollection)
+}
         
 
 // Initial fetch request:
