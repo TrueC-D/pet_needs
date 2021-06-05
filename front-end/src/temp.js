@@ -3,18 +3,54 @@ const cardDeck = document.getElementById('card-deck')
 // would move this to the top of the file if i need this in multiple functions
 
 
-function loadUserPage(){
+function loadUserPage(userId){
+    const articleTitle = document.getElementById('title')
+    const userData = getUser(userId) 
+    const userAttr = userData.attributes
+    const userName = userAttr.name
+    const userRel = userData.relationships
+    const petIds = []
+    for(const pet in userRel){
+        const petId = pet.data.id
+        petIds.push(petId)
+    }
+
+    articleTitle.innerText = `${userName}'s Pets`
+
+    for(const petId of petIds){
+        const pet =  getPet(petId)
+        makePetJSObjects(pet)
+        // need to convert both of these functions to call on singular pets.
+    }
+    // need to fetch and make Pet Object for each pet that this user has.
+    
+    
+
+
     // should convert remove hidden class from create pet form
+    // need to put id on article to match user-> this way the page "knows" what user info it's populating
     // should call method to create pet cards
     // should 
 }
 
-function getNeedSel(){
-    fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
+function getNeedSel(needSelId){
+    fetch(NEED_SELECTS_URL/`${needSelId}`).then(response => response.json()).then(needSel => {
+        console.log("needSel:")
+        console.log(needSel)
+        console.log("needSel.data:")
+        console.log(needSel.data)
+        // return needSel.data
+    })
 }
 
-function getPets(){
-    fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
+function getPet(pet_id){
+    fetch(PETS_URL/`${pet_id}`).then(response => response.json()).then(pet => {
+        console.log("pet:")
+        console.log(pet)
+        console.log("pet.data:")
+        console.log(pet.data)
+        // return pet.data
+    })
 }
 
 function makePetJSObjects(pets){

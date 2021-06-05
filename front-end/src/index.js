@@ -206,6 +206,9 @@ class Dog extends PetWithACoat {
 }
 
 //  functions to manipulate DOM
+function getUser(userId){
+    fetch(USERS_URL/`${userId}`).then(response => response.json()).then(user => {return user.data})
+}
 
 function getUserData(){
 
