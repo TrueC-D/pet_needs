@@ -6,44 +6,12 @@ const PETS_URL = `${BASE_URL}/pets`
 const NEEDS_URL = `${BASE_URL}/pets`
 const NEED_SELECTS_URL = `${BASE_URL}/need_selections`
 
+const cardDeck = document.getElementById('card-deck')
+
 document.addEventListener('DOMContentLoaded', creatingUser)
 document.addEventListener('DOMContentLoaded', getUserData)
 
-// creating need selections
-
-function createNeedSelection(pet_id, title, description){
-    console.log('createNeedSelection method pet_id:')
-    console.log(pet_id)
-    console.log('createNeedSelection method title:')
-    console.log(title)
-    console.log('createNeedSelection method description:')
-    console.log(description)
-    fetch(NEED_SELECTS_URL, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({title: title, description: description, pet_id: pet_id})
-    }).then(response => response.json()).then(needSelect => console.log(needSelect))
-
-    // .then(needSelect => {
-        // const needSelectId = needSelect.data.id, 
-        // this.init(needSelectId)
-    // })
-
-}
-
-
-// creating a pet
-// const petTypes = {Pet: Pet, AquaticSpecies: AquaticSpecies, LandAnimal: LandAnimal, PetWithACoat: PetWithACoat, Cat: Cat, Dog: Dog }
-
-// function createPet(type = Pet, name, birthday, species, userId){
-//     let newPet = new petTypes[type](nexitame, birthday, species, userId)
-// }
-
-// let newPet = new Pet 
-
-// classes of pets
-
-//fetch should be a static function of pet that is initialized before the constructor.  See these links for more details: https://stackoverflow.com/questions/39394945/es6-classes-fetch-in-the-parent-class-refer-to-resolved-fetch-in-child-class ,  https://stackoverflow.com/questions/24398699/is-it-bad-practice-to-have-a-constructor-function-return-a-promise
+// Pet Classes
 
 class Pet {
     constructor(name, birthday, species, userId){
@@ -205,11 +173,55 @@ class Dog extends PetWithACoat {
     }
 }
 
-//  functions to manipulate DOM
+// creating need selections
+
+function createNeedSelection(pet_id, title, description){
+    console.log('createNeedSelection method pet_id:')
+    console.log(pet_id)
+    console.log('createNeedSelection method title:')
+    console.log(title)
+    console.log('createNeedSelection method description:')
+    console.log(description)
+    fetch(NEED_SELECTS_URL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({title: title, description: description, pet_id: pet_id})
+    }).then(response => response.json()).then(needSelect => console.log(needSelect))
+
+    // .then(needSelect => {
+        // const needSelectId = needSelect.data.id, 
+        // this.init(needSelectId)
+    // })
+
+}
+
+//  Simple Fetch Requests
+
 function getUser(userId){
     fetch(USERS_URL/`${userId}`).then(response => response.json()).then(user => {return user.data})
 }
 
+function getNeedSel(needSelId){
+    fetch(NEED_SELECTS_URL/`${needSelId}`).then(response => response.json()).then(needSel => {
+        console.log("needSel:")
+        console.log(needSel)
+        console.log("needSel.data:")
+        console.log(needSel.data)
+        // return needSel.data
+    })
+}
+
+function getPet(pet_id){
+    fetch(PETS_URL/`${pet_id}`).then(response => response.json()).then(pet => {
+        console.log("pet:")
+        console.log(pet)
+        console.log("pet.data:")
+        console.log(pet.data)
+        // return pet.data
+    })
+}
+
+//  Functions to manipulate DOM
 function getUserData(){
 
     console.log("inside getUserData function")

@@ -1,4 +1,4 @@
-const cardDeck = document.getElementById('card-deck')
+
 // this is where i store the cards in the index.html ->maybe i put this in a div instead
 // would move this to the top of the file if i need this in multiple functions
 
@@ -32,15 +32,6 @@ function loadUserPage(userId){
     // need to put id on article to match user-> this way the page "knows" what user info it's populating 
 }
 
-function getNeedSel(needSelId){
-    fetch(NEED_SELECTS_URL/`${needSelId}`).then(response => response.json()).then(needSel => {
-        console.log("needSel:")
-        console.log(needSel)
-        console.log("needSel.data:")
-        console.log(needSel.data)
-        // return needSel.data
-    })
-}
 
 function getPet(pet_id){
     fetch(PETS_URL/`${pet_id}`).then(response => response.json()).then(pet => {
