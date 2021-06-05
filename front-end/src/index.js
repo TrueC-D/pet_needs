@@ -198,26 +198,26 @@ function createNeedSelection(pet_id, title, description){
 //  Simple Fetch Requests
 
 function getUser(userId){
-    fetch(USERS_URL/`${userId}`).then(response => response.json()).then(user => {return user.data})
+    fetch(`${USERS_URL}/${userId}`).then(response => response.json()).then(user => {return user.data})
 }
 
 function getNeedSel(needSelId){
-    fetch(NEED_SELECTS_URL/`${needSelId}`).then(response => response.json()).then(needSel => {
+    fetch(`${NEED_SELECTS_URL}/${needSelId}`).then(response => response.json()).then(needSel => {
         console.log("needSel:")
         console.log(needSel)
         console.log("needSel.data:")
         console.log(needSel.data)
-        // return needSel.data
+        return needSel.data
     })
 }
 
 function getPet(pet_id){
-    fetch(PETS_URL/`${pet_id}`).then(response => response.json()).then(pet => {
+    fetch(`${PETS_URL}/${pet_id}`).then(response => response.json()).then(pet => {
         console.log("pet:")
         console.log(pet)
         console.log("pet.data:")
         console.log(pet.data)
-        // return pet.data
+        return pet.data
     })
 }
 

@@ -33,16 +33,6 @@ function loadUserPage(userId){
 }
 
 
-function getPet(pet_id){
-    fetch(PETS_URL/`${pet_id}`).then(response => response.json()).then(pet => {
-        console.log("pet:")
-        console.log(pet)
-        console.log("pet.data:")
-        console.log(pet.data)
-        // return pet.data
-    })
-}
-
 function makePetJSObjects(pet){
     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
         const attr = pet.attributes

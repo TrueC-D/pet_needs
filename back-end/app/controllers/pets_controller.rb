@@ -9,8 +9,7 @@ class PetsController < ApplicationController
     end
     def show
         pet = Pet.find_by(id: params[:id])
-        render json: PetSerializer.new(pet)
-        options = {include: [:needs]}
+        options = {include: [:need_selections]}
         render json: PetSerializer.new(pet, options)
     end
 

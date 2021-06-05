@@ -5,7 +5,7 @@ class NeedSelectionsController < ApplicationController
     end
 
     def show 
-        need_select = Needselection.find_by(id: params[:id])
+        need_select = NeedSelection.find_by(id: params[:id])
         render json: NeedSelectionSerializer.new(need_select)
     end
 
