@@ -20,7 +20,7 @@ function getPets(){
 function makePetJSObjects(pets){
     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
     for (const pet of pets){
-        // const pet_id = 
+        // const pet_id = pet.id
         // const petName = 
         // const petBirth = 
         // const petSpecies = 
