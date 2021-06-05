@@ -9,6 +9,10 @@ function loadUserPage(){
     // should 
 }
 
+function getNeedSels(){
+    fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
+}
+
 function getPets(){
     fetch(PETS_URL).then(response => response.json()).then(pets => console.log(pets))
     // .then(pets => {
@@ -23,27 +27,36 @@ function getPets(){
     // 
 }
 
-function makePetObjects(pets){
+function makePetJSObjects(pets){
     // in the future, may have to create a different class so that pet object features can be populated as altered from their originally initialized state. -> needSelects would be different.
     for (const pet of pets){
+        // const pet_id = 
         // const petName = 
         // const petBirth = 
         // const petSpecies = 
         // const petUserId =
-        // const needSels =
+        // const needSelIds = 
+        // const needSels = 
         
        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
+       thisPet.petId(pet_id)
        thisPet.needSelects(needSels)
+    //    createPetCard(thisPet)
     }
 }
 
 
 function createPetCard(pet){
+
+    // Pet Card:
+
     const card = document.createElement('div')
-    card.setAttribute('data-id', pet.id)
+    card.setAttribute('data-pet-id', pet.petId)
     // maybe will write this differently
     card.setAttribute('class', 'card')
     cardDeck.appendChild(card)
+
+    // Pet Info:
 
     const petName = document.createElement('h5')
     petName.innerText = pet.name
@@ -56,12 +69,16 @@ function createPetCard(pet){
     const petBirth = document.createElement('p')
     petBirth.innerText = `Birthday: ${pet.birthday}`
     card.appendChild(petBirth)
-    
+
+    const insertBreak = document.createElement('br')
+    card.appendChild(insertBreak)
+
+    // Need Selection:
+        
     const selectLabel = document.createElement('label')
     selectLabel.innerText = 'Create Need From Saved Needs:'
     card.appendChild(selectLabel)
     
-
     const needDropdown = document.createElement(select)
     needDropdown.setAttribute('id', 'need-dropdown')
     selectLabel.appendChild(needDropdown)
@@ -70,9 +87,7 @@ function createPetCard(pet){
     nullOption.value = ""
     needDropdown.appendChild(nullOption)
 
-    const needSels = pet.needSelects
-
-    for (const needSel of NeedSels){
+    for (const needSel of pet.needSelects){
         // may need to create new variables from fetch request
         const newOption = document.createElement('option')
         newOption.value = needSel.title
@@ -80,14 +95,20 @@ function createPetCard(pet){
         newOption.appendChild(needDropdown)
     }
 
+    
+    // const createNeedBtn = document.createElement('button')
+    // createNeedBtn.innerText = "Create Need"
+    // card.appendChild(createNeedBtn)
 
 
-    // stretch goal: need to create submit feature and grab dropdown element with other parts of form.
+    // for future developments: 
+    // form field for user to select a time and date for the need to be completed before submitting.
+    // form field for custom title & description
 
-    // for future developments: const needList = 
+    // const needList = 
     // this would call a list fetched of all the needs that are currently on the schedule
 
-    // should be used with fetch for each pet found and for any new peets
+    // should be used with fetch for each pet found and for any new pets
     // delete pet button
     // delete li button should be usable 
     // create li buttion? 
