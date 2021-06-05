@@ -17,20 +17,17 @@ function loadUserPage(userId){
 
     articleTitle.innerText = `${userName}'s Pets`
 
+    const createPetForm = document.getElementById('create-pet')
+    createPetForm.removeAttribute('class')
+
     for(const petId of petIds){
         const pet =  getPet(petId)
         makePetJSObjects(pet)
         // need to convert both of these functions to call on singular pets.
-    }
-    // need to fetch and make Pet Object for each pet that this user has.
+    }  
     
-    
-
-
     // should convert remove hidden class from create pet form
-    // need to put id on article to match user-> this way the page "knows" what user info it's populating
-    // should call method to create pet cards
-    // should 
+    // need to put id on article to match user-> this way the page "knows" what user info it's populating 
 }
 
 function getNeedSel(needSelId){
