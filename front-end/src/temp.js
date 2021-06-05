@@ -5,59 +5,6 @@
 function clearCardDeck(){}
 
 
-function makePetJSObjects(pet){
-    // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
-        const attr = pet.attributes
-        console.log('pet attributes')
-        console.log(attr)
-        const pet_id = pet.id
-        console.log('pet id')
-        console.log(pet_id)
-        const petName = attr.name
-        console.log('pet name')
-        console.log(petName)
-        const petBirth = attr.birthday
-        console.log( 'pet birth')
-        console.log(petBirth)
-        const petSpecies = attr.species
-        console.log('pet speices')
-        console.log(petSpecies)
-        const petUserId = attr.user_id
-        console.log('petUserId')
-        console.log(petUserId)
-
-        const needSelIds = []
-        for(const needSelData in pet.relationships.need_selections){
-            const needSelId = needSelData.data.id
-            console.log('needSelId')
-            console.log(needSelId)
-            needSelIds.push(needSelId)
-            console.log('needSelIds')
-            console.log(needSelIds)
-        }
-        // const needSels = []
-        // for(const needSelId of needSelIds){
-        //     const needSel = getNeedSel(id)
-        //     // const title = needSel.title
-        //     // const description = needSel.description
-        //     // const needSelInfo = {title: title, desciption: description}
-        //     // needSels.push(needSelInfo)
-        //     needSels.push(needSel)
-        // }
-        
-        
-       const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
-       console.log('thisPet')
-       console.log(thisPet)
-       thisPet.petId(pet_id)
-       console.log('thisPet.petId')
-       console.log(thisPet.petId)
-    //    thisPet.needSelects(needSels)
-    //    createPetCard(thisPet)
-    
-}
-
-
 function createPetCard(pet){
 
     // Pet Card:
