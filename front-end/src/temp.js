@@ -20,31 +20,35 @@ function getPets(){
 function makePetJSObjects(pets){
     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
     for (const pet of pets){
-        // const pet_id = pet.id
-        // const petName = 
-        // const petBirth = 
-        // const petSpecies = 
-        // const petUserId =
+        const data = pet.data
+        const attr = data.attributes
+        const pet_id = data.id
+        const petName = attr.name
+        const petBirth = attr.birthday
+        const petSpecies = attr.species
+        const petUserId = attr.user_id
+
         const needSelIds = []
         for(const needSelData in pet.relationships.need_selections){
             const needSelId = needSelData.data.id
             needSelIds.push(needSelId)
         }
-        const needSels = []
-        for(const needSelId of needSelIds){
-            const needSel = getNeedSel(id)
-            // const title = needSel.title
-            // const description = needSel.description
-            // const needSelInfo = {title: title, desciption: description}
-            // needSels.push(needSelInfo)
-            needSels.push(needSel)
-        }
+        // const needSels = []
+        // for(const needSelId of needSelIds){
+        //     const needSel = getNeedSel(id)
+        //     // const title = needSel.title
+        //     // const description = needSel.description
+        //     // const needSelInfo = {title: title, desciption: description}
+        //     // needSels.push(needSelInfo)
+        //     needSels.push(needSel)
+        // }
         
         
        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
+       console.log(thisPet)
        thisPet.petId(pet_id)
-       thisPet.needSelects(needSels)
-    //    createPetCard(thisPet)
+    //    thisPet.needSelects(needSels)
+       createPetCard(thisPet)
     }
 }
 
