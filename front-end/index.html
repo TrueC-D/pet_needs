@@ -27,13 +27,13 @@
                 
                 <!-- should dynamically be populated and change to a different user's name each time a different user is selected in the navigation bar -->
                 <p><em>Click on a user's name to view their pets</em></p>
-                <br>
                 <h1 id= 'title'>Welcome To Pet Tracker!</h1>
                 <!-- javascript to make create pet button with pet attributes -->
                 <div id= 'create-pet' class = 'hidden'>
                     <form>
                         <label> Pet Name: </label>
                         <input type = 'text' name ='pet_name'>
+                        <br>
                         <label> Species: </label>
                         <select name="pet-class" id="pet-dropdown">
                             <option value="AquaticSpecies">Aquatic Species</option>
@@ -44,9 +44,11 @@
                             <option value="Pet">Other</option>
                         </select>
                         <input id = 'custom species' type = 'text' class = hidden name ='species'>
+                        <br>
                         <!-- the above input field should be populated if the user selects anything other than dog or cat from the pet-class dropdown list -->
                         <label>Birthday: </label>
                         <input type = 'text' name ='birthday'>
+                        <br>
                         <button type = 'button'>Create Pet</button>
                         <!-- javascript event listener will collect userame from article <h1 id = title> -->
                             <!-- it should also createAttribute('class', 'hidden') for species field if this has been removed -->

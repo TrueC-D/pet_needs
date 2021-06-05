@@ -211,13 +211,9 @@ function getNeedSel(needSelId){
     })
 }
 
-function getPet(pet_id){
+function getPet(pet_id, someFunc){
     fetch(`${PETS_URL}/${pet_id}`).then(response => response.json()).then(pet => {
-        console.log("pet:")
-        console.log(pet)
-        console.log("pet.data:")
-        console.log(pet.data)
-        return pet.data
+        someFunc(pet.data)
     })
 }
 
@@ -299,8 +295,6 @@ function loadUserPage(userId){
     // clearCardDeck()
     const articleTitle = document.getElementById('title')
     const dataCollect = []
-    // console.log('dataCollect')
-    // console.log(dataCollect)
     function dataCollection(data){
         dataCollect.push(data)
         const userData = dataCollect[0]
@@ -316,17 +310,20 @@ function loadUserPage(userId){
         
         articleTitle.innerText = `${userName}'s Pets`
         
-        // const createPetForm = document.getElementById('create-pet')
-        // createPetForm.removeAttribute('class')
+        const createPetForm = document.getElementById('create-pet')
+        createPetForm.removeAttribute('class')
         
-        // for(const petId of petIds){
-        //     const pet =  getPet(petId)
-        //     // makePetJSObjects(pet)
-        //     // need to convert both of these functions to call on singular pets.
-        // }  
-            
-        // should convert remove hidden class from create pet form
-        // need to put id on article to match user-> this way the page "knows" what user info it's populating 
+        for(const petId of petIds){
+            const dataCollect2 = []
+            function dataExtrapolate(pet){
+                console.log('extrapolated pet')
+                console.log(pet)
+                makePetJSObjects(pet)
+            }
+            const pet =  getPet(petId, dataExtrapolate)
+            // 
+        }  
+             
     }
     
     getUser(userId, dataCollection)
