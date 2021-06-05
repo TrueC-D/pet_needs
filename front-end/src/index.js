@@ -12,11 +12,18 @@ document.addEventListener('DOMContentLoaded', getUserData)
 // creating need selections
 
 function createNeedSelection(pet_id, title, description){
+    console.log('createNeedSelection method pet_id:')
+    console.log(pet_id)
+    console.log('createNeedSelection method title:')
+    console.log(title)
+    console.log('createNeedSelection method description:')
+    console.log(description)
     fetch(NEED_SELECTS_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({title: title, description: description, pet_id: pet_id})
     }).then(response => response.json()).then(needSelect => console.log(needSelect))
+
     // .then(needSelect => {
         // const needSelectId = needSelect.data.id, 
         // this.init(needSelectId)
@@ -59,6 +66,8 @@ class Pet {
             })
         }).then(response => response.json()).then(pet=> {
             this.petId(pet.data.id)
+            console.log(pet)
+            // this.init()
         })
         // may need to fetch need selects here as well
         // createNeedSelectionMethod does this which is called in addNeedSelection which is called in init
@@ -71,21 +80,32 @@ class Pet {
         return this.petId
     }
 
-
     initNeedSelects(){
-        // this returns an array of needselects that are created on initialization
-        const needSelects = [
+        this.initNeedSelects = [
             {title: 'Feed', description: 'Every pet needs to be fed.'},
-            {title: 'Vet Visit', description: "Going to the vet is necessary for a pet's health. Some species require vets with special certifications."}
+            {title: "Vet Visit", description: "Going to the vet is necessary for a pet's health. Some species require vets with special certifications."}
         ]
-        return needSelects
-        // stretch goal, add & remove need selects
+        return this.initNeedSelects
     }
+
+
+    // initNeedSelects(){
+    //     // this returns an array of needselects that are created on initialization
+    //     this.initNeedSelects = [
+    //         {title: 'Feed', description: 'Every pet needs to be fed.'},
+    //         {title: 'Vet Visit', description: "Going to the vet is necessary for a pet's health. Some species require vets with special certifications."}
+    //     ]
+    //     return this.initNeedSelects
+    //     // stretch goal, add & remove need selects
+    // }
 
     init(){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item
-        for(const needSelect of this.initNeedSelections){
-            this.createNeedSel(this.petId, needSelect)
+        const needSelects = this.initNeedSelects()
+        
+        for(const needSelect of needSelects){
+            createNeedSelection(this.petId, needSelect.title, needSelect.description)
+            this.addToNeedSelects(needSelect.title, needSelect.description)
         }
     }
 
@@ -104,10 +124,10 @@ class Pet {
         this.needSelects.push({title: title, description: description})
     }
 
-    createNeedSel(needSelect){
+    addNeedSel(title, description){
         // this calls the function that has the fetch request for the needselect.  This can be used for adding individual needs later.
-        createNeedSelection(this.petId, needSelect.title, needSelect.description)
-        this.addToNeedSelects(needSelect.title, needSelect.description)
+        createNeedSelection(this.petId, title, description)
+        this.addToNeedSelects(title, description)
     }
 }
 
