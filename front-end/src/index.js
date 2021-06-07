@@ -81,8 +81,9 @@ class Pet {
         // you want to set this instead of initializing when you are pulling from an already established pet
         if(needSelsJson){
         for(const needSelect of needSelsJson){
-            // const needTitle = needSelect... something
-            // const needDescription = needSelect... something
+            
+            const needTitle = needSelect.title
+            const needDescription = needSelect.description
             this.addToNeedSelects(needTitle, needDescription)
         }}
 
@@ -201,13 +202,9 @@ function getUser(userId, someFunc ){
     fetch(`${USERS_URL}/${userId}`).then(response => response.json()).then(user => {someFunc(user.data)})
 }
 
-function getNeedSel(needSelId){
+function getNeedSel(needSelId, someFunc){
     fetch(`${NEED_SELECTS_URL}/${needSelId}`).then(response => response.json()).then(needSel => {
-        console.log("needSel:")
-        console.log(needSel)
-        console.log("needSel.data:")
-        console.log(needSel.data)
-        return needSel.data
+        someFunc(needSel.data.attributes)
     })
 }
 
@@ -328,80 +325,73 @@ function loadUserPage(userId){
 }
 
 
+
+
+
 function makePetJSObject(pet){
-    // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
-        const attr = pet.attributes
-        
-        const pet_id = pet.id
-       
-        const petName = attr.name
-     
-        const petBirth = attr.birthday
-    
-        const petSpecies = attr.species
-      
-        const petUserId = attr.user_id
-        
+    const needSels = []
 
-        const needSelIds = []
-
-        console.log('pet rel need selections.data[0]')
-        console.log(pet.relationships.need_selections.data[0])
-
-        
-
-        for(const needSelData of pet.relationships.need_selections.data){
-            if(needSelData){
-                const needSels = []
-                const needSelId = needSelData.id
-                needSelIds.push(needSelId)
-                // for(const needSelId of needSelIds){
-                    function dataExtrapolate(needSel){
-                        console.log('extrapoldated needSel')
-                        console.log(needSel)
-                        const nSTitle = needSel.title
-                        const nSDescription = needSel.description
-                        needSel
-
-                    }
-        
-                //     const needSel = getNeedSel(id, )
-                //     // const title = needSel.title
-                //     // const description = needSel.description
-                //     // const needSelInfo = {title: title, desciption: description}
-                //     // needSels.push(needSelInfo)
-                //     needSels.push(needSel)
-                // }
-            }
-           
-        
-    //     // pasted from above for reference
-    //     // for(const petId of petIds){
-    //     //     const dataCollect2 = []
-    //     //     function dataExtrapolate(pet){
-    //     //         console.log('extrapolated pet')
-    //     //         console.log(pet)
-    //     //         makePetJSObject(pet)
-    //     //     }
-    //     //     const pet =  getPet(petId, dataExtrapolate)
-    //     //     // 
-    //     // }  
-
-
-
-
-  
-        
-        
-    //    const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
-    //    console.log('thisPet')
-    //    console.log(thisPet)
-    //    thisPet.petId(pet_id)
-    //    console.log('thisPet.petId')
-    //    console.log(thisPet.petId)
-    // //    thisPet.needSelects(needSels)
-    // //    createPetCard(thisPet)
+    function newPet(needSels){
+        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
+        thisPet.petId(pet_id)
+        console.log('thisPet.petId')
+        console.log(thisPet.petId)
+        if(needSels.length > 0){
+            thisPet.addNeedSelectsFromJson(needSels)
+            console.log('thisPet.needSelects')
+            console.log(thisPet.needSelects)
+            console.log('thisPet')
+            console.log(thisPet)
+            createPetCard(thisPet)
+        }else{
+            console.log('thisPet w/no needSels')
+            console.log(thisPet)
+            // createPetCard(thisPet)
         }
+    }
+    // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
+    const attr = pet.attributes
+    
+    const pet_id = pet.id
+    
+    const petName = attr.name
+    
+    const petBirth = attr.birthday
+
+    const petSpecies = attr.species
+    
+    const petUserId = attr.user_id
+    
+
+    const needSelIds = []
+
+    console.log('pet rel need selections.data[0]')
+    console.log(pet.relationships.need_selections.data[0])
+
+    
+
+    for(const needSelData of pet.relationships.need_selections.data){
+        if(needSelData){
+            const needSelId = needSelData.id
+            needSelIds.push(needSelId)
+            for(const needSelId of needSelIds){
+                getNeedSel(needSelId, dataExtrapolate)
+                function dataExtrapolate(needSel){
+                    const title = needSel.title
+                    const description = needSel.description
+                    const needSelInfo = {title: title, description: description}
+                    needSels.push(needSelInfo)
+                    newPet(needSels)
+
+                }                    
+            }
+            
+        }
+
+    }
+
+    newPet(needSels)
+        
 }
         
 
