@@ -278,7 +278,7 @@ function deleteLi(event){
 }
 
 function loadUserPage(userId){
-    // clearCardDeck()
+    clearCardDeck()
     const articleTitle = document.getElementById('title')
     const dataCollect = []
     function dataCollection(data){
@@ -365,6 +365,10 @@ function makePetJSObject(pet){
     }
 }
 
+function clearCardDeck(){
+    let currentList = Object.values(document.getElementsByClassName('card'))
+    currentList.map(card => card.remove())
+}
 
 function createPetCard(pet){
 
