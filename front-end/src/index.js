@@ -325,11 +325,11 @@ function makePetJSObject(pet){
             console.log(thisPet.needSelects)
             console.log('thisPet')
             console.log(thisPet)
-            // createPetCard(thisPet)
+            createPetCard(thisPet)
         }else{
             console.log('thisPet w/no needSels')
             console.log(thisPet)
-            // createPetCard(thisPet)
+            createPetCard(thisPet)
         }
     }
     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
@@ -383,7 +383,7 @@ function createPetCard(pet){
     card.appendChild(petName)
 
     const petSpecies = document.createElement('p')
-    petSpecies.innerText = `Species: ${pet.description}`
+    petSpecies.innerText = `Species: ${pet.species}`
     card.appendChild(petSpecies)
 
     const petBirth = document.createElement('p')
@@ -398,8 +398,11 @@ function createPetCard(pet){
     const selectLabel = document.createElement('label')
     selectLabel.innerText = 'Create Need From Saved Needs:'
     card.appendChild(selectLabel)
+
+    selectLabel.appendChild(insertBreak)
+
     
-    const needDropdown = document.createElement(select)
+    const needDropdown = document.createElement('select')
     needDropdown.setAttribute('id', 'need-dropdown')
     selectLabel.appendChild(needDropdown)
 
@@ -407,12 +410,12 @@ function createPetCard(pet){
     nullOption.value = ""
     needDropdown.appendChild(nullOption)
 
-    for (const needSel of pet.needSelects){
+    for(const needSel of pet.needSelects){
         // may need to create new variables from fetch request
         const newOption = document.createElement('option')
         newOption.value = needSel.title
         newOption.innerText = `${needSel.title}; ${needSel.description}`
-        newOption.appendChild(needDropdown)
+        needDropdown.appendChild(newOption)
     }
 
     
