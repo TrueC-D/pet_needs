@@ -32,7 +32,7 @@
                 <div id= 'create-pet' class = 'hidden'>
                     <form>
                         <label> Pet Name: </label>
-                        <input type = 'text' name ='pet_name'>
+                        <input id = 'new-pet-name' type = 'text' name ='pet_name' >
                         <br>
                         <label> Species: </label>
                         <select name="pet-class" id="pet-dropdown">
@@ -43,13 +43,13 @@
                             <option value="Cat">Cat <em>(pet with a coat)</em></option>
                             <option value="Pet">Other</option>
                         </select>
-                        <input id = 'custom species' type = 'text' class = hidden name ='species'>
+                        <input id = 'custom-species' type = 'text' class = hidden name ='species'>
                         <br>
                         <!-- the above input field should be populated if the user selects anything other than dog or cat from the pet-class dropdown list -->
                         <label>Birthday: </label>
-                        <input type = 'text' name ='birthday'>
+                        <input id = 'new-pet-birthday' type = 'text' name ='birthday'>
                         <br>
-                        <button type = 'button'>Create Pet</button>
+                        <button id = 'new-pet-submit'type = 'button'>Create Pet</button>
                         <!-- javascript event listener will collect userame from article <h1 id = title> -->
                             <!-- it should also createAttribute('class', 'hidden') for species field if this has been removed -->
                             <!-- question about bugs: is it possible that after selecting create pet, if a person clicks on a different username in the navigation bar that the new username would be attached to the pet instead?  That would require the new username to load first into the title section.  I would need to make sure that the title only loads when other things have finished loading -->
