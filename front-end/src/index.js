@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', getUserData)
 // Pet Classes
 
 class Pet {
-    constructor(name, birthday, species, userId){
+    constructor(name, birthday, species, user_id){
         this.name = name
         this.birthday = birthday
         this.species = species
-        this.user_id = userId
+        this.user_id = user_id
         this.needSelects = []
     }
 
@@ -137,12 +137,10 @@ class PetWithACoat extends LandAnimal {
 }
 
 class Cat extends PetWithACoat {
-    constructor(name, birthday, userId){
-        super(name)
-        super(birthday)
-        super(user_id)
-        super(needSelects)
+    constructor(name, birthday, user_id){
+        super(name, birthday, user_id);
         this.species = 'Cat'
+        this.needSelects = []
     }
 
     initNeedSelects(){
@@ -156,12 +154,10 @@ class Cat extends PetWithACoat {
 }
 
 class Dog extends PetWithACoat {
-    constructor(name, birthday, userId){
-        super(name)
-        super(birthday)
-        super(user_id)
-        super(needSelects)
+    constructor(name, birthday, user_id){
+        super(name, birthday, user_id)
         this.species = 'Dog'
+        this.needSelects = []
     }
 
     initNeedSelects(){
