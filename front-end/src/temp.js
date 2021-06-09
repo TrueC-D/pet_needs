@@ -1,8 +1,12 @@
+const createPetBtn = document.getElementById('create-pet').getElementsByTagName('button')[0]
+// createPetBtn.addEventListener()
+// needs to grab
+userLink.addEventListener('click', selectUser)
 
-// this is where i store the cards in the index.html ->maybe i put this in a div instead
-// would move this to the top of the file if i need this in multiple functions
-
-function clearCardDeck(){
-    let currentList = Object.values(document.getElementsByClassName('card'))
-    currentList.map(card => card.remove())
-}
+function selectUser(){ event => {
+    const wasSelected = document.getElementById('user-links').getElementsByClass('selected')[0]
+    if(wasSelected){
+        wasSelected.className = 'clickable'
+        event.target.className = 'selected'
+    }else{event.target.className = 'selected'}
+}}

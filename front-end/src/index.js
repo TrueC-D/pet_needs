@@ -253,6 +253,18 @@ function createUserLi(user){
     document.getElementById('user-links').appendChild(userLink)
     createDeleteLiButton('user', user.id)
     userLink.addEventListener('click', function(){loadUserPage(user.id)})
+    userLink.addEventListener('click', selectUser)
+    
+}
+
+function selectUser(event){
+    console.log("Event target:")
+    console.log(event.target)
+    const wasSelected = document.getElementsByClassName('selected')[0]
+    if(wasSelected){
+        wasSelected.className = 'clickable'
+        event.target.className = 'selected'
+    }else{event.target.className = 'selected'}
 }
 
 function createDeleteLiButton(modelName, itemId){
@@ -278,6 +290,7 @@ function deleteLi(event){
 }
 
 function loadUserPage(userId){
+    
     clearCardDeck()
     const articleTitle = document.getElementById('title')
     const dataCollect = []
@@ -364,6 +377,8 @@ function makePetJSObject(pet){
         }
     }
 }
+
+
 
 function clearCardDeck(){
     let currentList = Object.values(document.getElementsByClassName('card'))
