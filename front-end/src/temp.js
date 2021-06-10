@@ -9,21 +9,56 @@ createPetBtn.addEventListener('click', function(){
     console.log('petUserId')
     console.log(petUserId)
 
+    // function createPet(thisPet){
+        // this function is not working
+    //     thisPet.createThis()
+    //     thisPet.init()
+    // }
+
     switch(petClass){
         case 'Dog': {
             let thisPet = new Dog(petName, petBirth, petUserId);
-            console.log(thisPet)
+            console.log(thisPet);
+            thisPet.createThis()
+            thisPet.init()
             break;
         }
         case 'Cat':{
             let thisPet = new Cat(petName, petBirth, petUserId);
-            console.log(thisPet)
+            console.log(thisPet);
+            thisPet.createThis()
+            thisPet.init()
             break;
         }
-        default: {
-            let thisPet = new petClass(petName, petBirth, customSpecies, petUserId)
+        case 'AquaticSpecies':{
+            let thisPet = new AquaticSpecies(petName, petBirth, petUserId, customSpecies);
+            console.log(thisPet);
+            thisPet.createThis()
+            thisPet.init()
+            break;
+        }
+        case 'LandAnimal':{
+            let thisPet = new LandAnimal(petName, petBirth, petUserId, customSpecies);
             console.log(thisPet)
+            thisPet.createThis()
+            thisPet.init()
+            break;
+        }
+        case 'PetWithACoat':{
+            let thisPet = new PetWithACoat(petName, petBirth, petUserId, customSpecies);
+            console.log(thisPet);
+            thisPet.createThis()
+            thisPet.init()
+            break;
+        }
+        case 'Pet': {
+            let thisPet = new Pet(petName, petBirth, petUserId, customSpecies);
+            thisPet.createThis()
+            thisPet.init()
+            break;
         }
     }
+    // Dynamic class for the future:
+    // https://stackoverflow.com/questions/34655616/create-an-instance-of-a-class-in-es6-with-a-dynamic-name
 
 })

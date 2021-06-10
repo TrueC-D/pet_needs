@@ -56,22 +56,9 @@ class Pet {
         return this.initNeedSelects
     }
 
-
-    // initNeedSelects(){
-    //     // this returns an array of needselects that are created on initialization
-    //     this.initNeedSelects = [
-    //         {title: 'Feed', description: 'Every pet needs to be fed.'},
-    //         {title: 'Vet Visit', description: "Going to the vet is necessary for a pet's health. Some species require vets with special certifications."}
-    //     ]
-    //     return this.initNeedSelects
-    //     // stretch goal, add & remove need selects
-    // }
-
     init(){
-        // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item
-        const needSelects = this.initNeedSelects()
-        
-        for(const needSelect of needSelects){
+        // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item        
+        for(const needSelect of this.initNeedSelects()){
             createNeedSelection(this.petId, needSelect.title, needSelect.description)
             this.addToNeedSelects(needSelect.title, needSelect.description)
         }
@@ -95,7 +82,7 @@ class Pet {
 
     addNeedSel(title, description){
         // this calls the function that has the fetch request for the needselect.  This can be used for adding individual needs later.
-        createNeedSelection(this.petId, title, description)
+        createNeedSelection(this.petId(), title, description)
         this.addToNeedSelects(title, description)
     }
 }
@@ -108,7 +95,9 @@ class AquaticSpecies extends Pet {
             {title: 'Turn On Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light on to start their morning."},
             {title: 'Turn Off Light', description: "Animals in terrariums and aquariums also need a day and night cycle. Turn the light off to start their evening."}
         ]
-        const allNeedSelects = super.needSelects().concat(newNeedSelects)
+        
+        const allNeedSelects = super.initNeedSelects().concat(newNeedSelects)
+        console.log(allNeedSelects)
 
         return allNeedSelects
     }
@@ -119,7 +108,8 @@ class LandAnimal extends Pet {
         let newNeedSelects = [
             {title: 'Give Water', description: "Pets that don't live in water need to drink water to stay hydrated."}
         ]
-        const allNeedSelects = super.needSelects().concat(newNeedSelects)
+        const allNeedSelects = super.initNeedSelects().concat(newNeedSelects)
+        console.log(allNeedSelects)
 
         return allNeedSelects
     }
@@ -130,7 +120,8 @@ class PetWithACoat extends LandAnimal {
         let newNeedSelects = [
             {title: 'Groom', description: "Grooming prevents matts from developing, prevents rashes and infection."}
         ]
-        const allNeedSelects = super.needSelects().concat(newNeedSelects)
+        const allNeedSelects = super.initNeedSelects().concat(newNeedSelects)
+        console.log(allNeedSelects)
 
         return allNeedSelects
     }
@@ -147,7 +138,8 @@ class Cat extends PetWithACoat {
         let newNeedSelects = [
             {title: 'Clean Litter Box', description: "A clean litter box helps prevent a messy house and sanitary living environment."}
         ]
-        const allNeedSelects = super.needSelects().concat(newNeedSelects)
+        const allNeedSelects = super.initNeedSelects().concat(newNeedSelects)
+        console.log(allNeedSelects)
 
         return allNeedSelects
     }
@@ -164,7 +156,8 @@ class Dog extends PetWithACoat {
         let newNeedSelects = [
             {title: 'Go On Walk', description: "Excercise is a must half for a healthy animal."}
         ]
-        const allNeedSelects = super.needSelects().concat(newNeedSelects)
+        const allNeedSelects = super.initNeedSelects().concat(newNeedSelects)
+        console.log(allNeedSelects)
 
         return allNeedSelects
     }
@@ -183,7 +176,7 @@ function createNeedSelection(pet_id, title, description){
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({title: title, description: description, pet_id: pet_id})
-    }).then(response => response.json()).then(needSelect => console.log(needSelect))
+    }).then(response => response.json()).then(needSelect => {console.log(needSelect)})
 
     // .then(needSelect => {
         // const needSelectId = needSelect.data.id, 
