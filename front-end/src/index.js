@@ -35,7 +35,7 @@ class Pet {
         }).then(response => response.json()).then(pet=> {
             this.petId(pet.data.id)
             console.log(pet)
-            // this.init()
+            this.init()
         })
         // may need to fetch need selects here as well
         // createNeedSelectionMethod does this which is called in addNeedSelection which is called in init
@@ -59,6 +59,7 @@ class Pet {
     init(){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item        
         for(const needSelect of this.initNeedSelects()){
+            console.log
             createNeedSelection(this.petId, needSelect.title, needSelect.description)
             this.addToNeedSelects(needSelect.title, needSelect.description)
         }
@@ -82,7 +83,7 @@ class Pet {
 
     addNeedSel(title, description){
         // this calls the function that has the fetch request for the needselect.  This can be used for adding individual needs later.
-        createNeedSelection(this.petId(), title, description)
+        createNeedSelection(this.petId, title, description)
         this.addToNeedSelects(title, description)
     }
 }
@@ -172,11 +173,11 @@ function createNeedSelection(pet_id, title, description){
     console.log(title)
     console.log('createNeedSelection method description:')
     console.log(description)
-    fetch(NEED_SELECTS_URL, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({title: title, description: description, pet_id: pet_id})
-    }).then(response => response.json()).then(needSelect => {console.log(needSelect)})
+    // fetch(NEED_SELECTS_URL, {
+    //     method: 'POST',
+    //     headers: {'Content-Type': 'application/json'},
+    //     body: JSON.stringify({title: title, description: description, pet_id: pet_id})
+    // }).then(response => response.json()).then(needSelect => {console.log(needSelect)})
 
     // .then(needSelect => {
         // const needSelectId = needSelect.data.id, 

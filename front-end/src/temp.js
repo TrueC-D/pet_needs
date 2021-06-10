@@ -19,42 +19,36 @@ createPetBtn.addEventListener('click', function(){
         case 'Dog': {
             let thisPet = new Dog(petName, petBirth, petUserId);
             console.log(thisPet);
-            thisPet.createThis()
-            thisPet.init()
+            thisPet.createThis();
             break;
         }
         case 'Cat':{
             let thisPet = new Cat(petName, petBirth, petUserId);
             console.log(thisPet);
-            thisPet.createThis()
-            thisPet.init()
+            thisPet.createThis();
             break;
         }
         case 'AquaticSpecies':{
             let thisPet = new AquaticSpecies(petName, petBirth, petUserId, customSpecies);
             console.log(thisPet);
-            thisPet.createThis()
-            thisPet.init()
+            thisPet.createThis();
             break;
         }
         case 'LandAnimal':{
             let thisPet = new LandAnimal(petName, petBirth, petUserId, customSpecies);
-            console.log(thisPet)
-            thisPet.createThis()
-            thisPet.init()
+            console.log(thisPet);
+            thisPet.createThis();
             break;
         }
         case 'PetWithACoat':{
             let thisPet = new PetWithACoat(petName, petBirth, petUserId, customSpecies);
             console.log(thisPet);
-            thisPet.createThis()
-            thisPet.init()
+            thisPet.createThis();
             break;
         }
         case 'Pet': {
             let thisPet = new Pet(petName, petBirth, petUserId, customSpecies);
-            thisPet.createThis()
-            thisPet.init()
+            thisPet.createThis();
             break;
         }
     }
