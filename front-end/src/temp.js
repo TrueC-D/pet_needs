@@ -35,7 +35,7 @@ function makePetJSObject(pet){
         newPet(needSels)
     } else {
         for(const needSelData of needSelDatas){
-            if(!needSelData){
+            if(needSels.length === needSelDatas.length){
                 newPet(needSels)
             }else{
 
@@ -51,9 +51,7 @@ function makePetJSObject(pet){
                         const description = needSel.description
                         const needSelInfo = {title: title, description: description}
                         needSels.push(needSelInfo)
-                        if(needSels.length === needSelDatas.length){
-                            newPet(needSels)
-                        }
+                        // newPet(needSels)
                     }                    
                 }
 
