@@ -1,6 +1,10 @@
 /* Style the header */
+/* Lab that I referenced for this file is the pokemon lab.  I also referenced the following links for header/sidebar layout and hiding elements:*/
+/* https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float */
+/* https://alexcican.com/post/hide-and-show-div/#:~:text=In%20the%20CSS%20we%20will%20add%20two%20classes.,affect%20the%20span%20element%20inside%20the%20outer%20div. */
+
 header {
-    background-color: #666;
+    background-color: rgb(68, 48, 48);
     padding: 30px;
     text-align: center;
     font-size: 35px;
@@ -11,13 +15,12 @@ header {
   nav {
     float: left;
     width: 15%;
-    height: 100%; 
-    /* height is only for demonstration, should be removed */
-    background: #ccc;
+    background: white;
     padding: 20px;
+    border: black;
   }
   
-  /* Style the list inside the menu */
+  /* Navigation Bar */
   nav ul {
     list-style-type: none;
     padding-left: 0;
@@ -30,32 +33,44 @@ header {
   }
 
   nav li:hover{color: green}
-  /* nav bar & header layout copied from: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float */
 
-  main {
+  nav input {width: 100%}
+
+  /* classes in nav */
+
+  .clickable:hover {color: rgb(88, 6, 26)}
+
+  .selected {
+    background-color: rgb(25, 25, 158);
+    color: white;
+  }
+
+  /* Card Deck */
+   div#card-deck{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-gap: 20px;
+    grid-gap: 10px;
     padding-top: 10px;
     padding-bottom: 30px;
     padding-right: 50px;
   }
 
-  
   div.card {
-    background-color: #eeeeee;
-    height: 250px;
-    width: 300px;
-    box-shadow: 10px 10px grey;
+    background-color: #e6b3b3;
+    height: 200px;
+    width: auto;
+    box-shadow: 10px 10px rgb(99, 99, 99);
     padding: 10px;
     border-radius: 10px;
   }
+
+  /* General */
   
   p {
-    font-size: 1em;
+    font-size: .80em;
     color: black;
-    font-family: Helvetica;
+    font-family: Calibri;
   }
   
   li {
@@ -66,22 +81,15 @@ header {
   
   button {
     font-size: .65em;
-    color: #fff;
-    background-color: green;
+    color: white;
+    background-color: rgb(88, 6, 26);
     border-radius: 10px;
   }
-  
-  /* button.release {
-    float: right;
-    background-color: #E1332D;
-  } */
 
-  /* css copied from pokemon lab */
-
-  nav input {width: 100%}
-
+  /* Create Pet Form */
   div.hidden {display: none}
- /*  instructions on how to hide and reveal things via css by hovering can be find here: https://alexcican.com/post/hide-and-show-div/#:~:text=In%20the%20CSS%20we%20will%20add%20two%20classes.,affect%20the%20span%20element%20inside%20the%20outer%20div. */
-  /* article {padding-left: 30px} this doesn't seem to work */
 
-  .clickable:hover {color: green}
+  label { 
+   font-size: .80em;
+   font-family: Calibri;
+  }
