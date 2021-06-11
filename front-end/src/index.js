@@ -56,12 +56,12 @@ class Pet {
         return this.initNeedSelects
     }
 
-    init(){
+    async init(){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item        
-        for(const needSelect of this.initNeedSelects()){
-            console.log
+        for await (let needSelect of this.initNeedSelects()){
             createNeedSelection(this.petId, needSelect.title, needSelect.description)
             this.addToNeedSelects(needSelect.title, needSelect.description)
+            
         }
     }
 
@@ -173,17 +173,12 @@ function createNeedSelection(pet_id, title, description){
     console.log(title)
     console.log('createNeedSelection method description:')
     console.log(description)
-    // fetch(NEED_SELECTS_URL, {
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify({title: title, description: description, pet_id: pet_id})
-    // }).then(response => response.json()).then(needSelect => {console.log(needSelect)})
-
-    // .then(needSelect => {
-        // const needSelectId = needSelect.data.id, 
-        // this.init(needSelectId)
-    // })
-
+    fetch(NEED_SELECTS_URL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({title: title, description: description, pet_id: pet_id})
+    }).then(response => response.json()).then(needSelect => {console.log(needSelect)})
+    // if this is called by a for loop how do i have the dom load when complete?
 }
 
 //  Simple Fetch Requests
@@ -301,6 +296,7 @@ function loadUserPage(userId){
         
         const createPetForm = document.getElementById('create-pet')
         createPetForm.removeAttribute('class')
+        createPetBtnListenter()
         
         for(const petId of petIds){
             const dataCollect2 = []
@@ -311,6 +307,64 @@ function loadUserPage(userId){
         }          
     }
     getUser(userId, dataCollection)
+}
+
+function createPetBtnListenter(){
+    const createPetBtn = document.getElementById('create-pet').getElementsByTagName('button')[0]
+
+    createPetBtn.addEventListener('click', function(){
+        const petName = document.getElementById('new-pet-name').value
+        const petBirth = document.getElementById('new-pet-birthday').value
+        const petClass = document.getElementById('pet-dropdown').value
+        const customSpecies = document.getElementById('custom-species').value
+        const petUserId = document.getElementsByClassName('selected')[0].id.split('-')[1]
+        console.log('petUserId')
+        console.log(petUserId)
+
+        switch(petClass){
+            case 'Dog': {
+                let thisPet = new Dog(petName, petBirth, petUserId);
+                console.log(thisPet);
+                thisPet.createThis();
+                break;
+            }
+            case 'Cat':{
+                let thisPet = new Cat(petName, petBirth, petUserId);
+                console.log(thisPet);
+                thisPet.createThis();
+                break;
+            }
+            case 'AquaticSpecies':{
+                let thisPet = new AquaticSpecies(petName, petBirth, petUserId, customSpecies);
+                console.log(thisPet);
+                thisPet.createThis();
+                break;
+            }
+            case 'LandAnimal':{
+                let thisPet = new LandAnimal(petName, petBirth, petUserId, customSpecies);
+                console.log(thisPet);
+                thisPet.createThis();
+                break;
+            }
+            case 'PetWithACoat':{
+                let thisPet = new PetWithACoat(petName, petBirth, petUserId, customSpecies);
+                console.log(thisPet);
+                thisPet.createThis();
+                break;
+            }
+            case 'Pet': {
+                console.log('petUserId')
+                console.log(petUserId)
+                let thisPet = new Pet(petName, petBirth, petUserId, customSpecies);
+                thisPet.createThis();
+                break;
+            }
+        }
+        // Dynamic class for the future:
+        // https://stackoverflow.com/questions/34655616/create-an-instance-of-a-class-in-es6-with-a-dynamic-name
+
+    })
+
 }
 
 function makePetJSObject(pet){
