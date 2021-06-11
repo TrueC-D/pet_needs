@@ -1,57 +1,65 @@
-function createPetBtnListenter(){
-    const createPetBtn = document.getElementById('create-pet').getElementsByTagName('button')[0]
+function makePetJSObject(pet){
+    const needSels = []
+    const needSelIds = []
+    const thisPetArr = []
 
-    createPetBtn.addEventListener('click', function(){
-        const petName = document.getElementById('new-pet-name').value
-        const petBirth = document.getElementById('new-pet-birthday').value
-        const petClass = document.getElementById('pet-dropdown').value
-        const customSpecies = document.getElementById('custom-species').value
-        const petUserId = document.getElementsByClassName('selected')[0].id.split('-')[1]
-        console.log('petUserId')
-        console.log(petUserId)
-
-        switch(petClass){
-            case 'Dog': {
-                let thisPet = new Dog(petName, petBirth, petUserId);
-                console.log(thisPet);
-                thisPet.createThis();
-                break;
-            }
-            case 'Cat':{
-                let thisPet = new Cat(petName, petBirth, petUserId);
-                console.log(thisPet);
-                thisPet.createThis();
-                break;
-            }
-            case 'AquaticSpecies':{
-                let thisPet = new AquaticSpecies(petName, petBirth, petUserId, customSpecies);
-                console.log(thisPet);
-                thisPet.createThis();
-                break;
-            }
-            case 'LandAnimal':{
-                let thisPet = new LandAnimal(petName, petBirth, petUserId, customSpecies);
-                console.log(thisPet);
-                thisPet.createThis();
-                break;
-            }
-            case 'PetWithACoat':{
-                let thisPet = new PetWithACoat(petName, petBirth, petUserId, customSpecies);
-                console.log(thisPet);
-                thisPet.createThis();
-                break;
-            }
-            case 'Pet': {
-                console.log('petUserId')
-                console.log(petUserId)
-                let thisPet = new Pet(petName, petBirth, petUserId, customSpecies);
-                thisPet.createThis();
-                break;
-            }
+   function newPet(needSels){
+        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
+        thisPet.petId(pet_id)
+        console.log('thisPet.petId')
+        console.log(thisPet.petId)
+        if(needSels.length > 0){
+            thisPet.addNeedSelectsFromJson(needSels)
+            console.log('thisPet.needSelects')
+            console.log(thisPet.needSelects)
+            console.log('thisPet')
+            console.log(thisPet)
+            thisPetArr.push(thisPet)
+            // createPetCard(thisPet)
+        }else{
+            console.log('thisPet w/no needSels')
+            console.log(thisPet)
+            createPetCard(thisPet)
         }
-        // Dynamic class for the future:
-        // https://stackoverflow.com/questions/34655616/create-an-instance-of-a-class-in-es6-with-a-dynamic-name
+    }
+    // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
+    const attr = pet.attributes    
+    const pet_id = pet.id    
+    const petName = attr.name    
+    const petBirth = attr.birthday
+    const petSpecies = attr.species
+    const petUserId = attr.user_id
+    const needSelDatas = pet.relationships.need_selections.data
 
-    })
+    if(needSelDatas.length < 1){
+        newPet(needSels)
+    } else {
+        for(const needSelData of needSelDatas){
+            if(!needSelData){
+                newPet(needSels)
+            }else{
 
+                const needSelId = needSelData.id
+                needSelIds.push(needSelId)
+
+                for(const needSelId of needSelIds){
+
+                    getNeedSel(needSelId, dataExtrapolate)
+
+                    function dataExtrapolate(needSel){
+                        const title = needSel.title
+                        const description = needSel.description
+                        const needSelInfo = {title: title, description: description}
+                        needSels.push(needSelInfo)
+                        if(needSels.length === needSelDatas.length){
+                            newPet(needSels)
+                        }
+                    }                    
+                }
+
+            }
+
+            
+        }
+    }
 }
