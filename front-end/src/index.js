@@ -428,7 +428,7 @@ function makePetJSObject(pet){
     const thisPetArr = []
 
    function newPet(needSels){
-        const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
+        const thisPet = new Pet (petName, petBirth, petUserId, petSpecies)
         thisPet.petId(pet_id)
         console.log('thisPet.petId')
         console.log(thisPet.petId)
