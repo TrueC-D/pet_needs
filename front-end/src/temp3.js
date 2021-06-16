@@ -1,8 +1,5 @@
 function makePetJSObject(pet){
-    const needSels = []
-    const needSelIds = []
     const thisPetArr = []
-
     const attr = pet.attributes    
     const pet_id = pet.id    
     const petName = attr.name    
@@ -19,6 +16,7 @@ function makePetJSObject(pet){
         thisPet.petId(pet_id)
         console.log('thisPet.petId')
         console.log(thisPet.petId)
+        console.log('needSels in newPet', needSels)
         if(needSels.length > 0){
             thisPet.addNeedSelectsFromJson(needSels)
             console.log('thisPet.needSelects')
@@ -33,41 +31,50 @@ function makePetJSObject(pet){
             createPetCard(thisPet)
         }
     }
-    // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
-   
+    
 
-    console.log('needSelIds',needSelIds)
-    for(i = 0; i <= needSelDatas.length; i++ ){
-        console.log('data group:')
-   
-        console.log('needSelDatas.length', needSelDatas.length)
-        console.log('needSels.length', needSels.length)
-        // needSelIds.addEventListener('change', ()=>{needSelIds.length === needSelDatas.length ? gettingNeedSelData(): null})
-        if(needSelDatas.length === needSels.length){
-            return newPet(needSels)
-        } else {
-            // let needSelData = needSelDatas[i]
-            console.log('is there an id?:', needSelDatas[i].id)
-            // console.log('needselData', needSelData)
-            // console.log('needSelData.id', needSelData.id)
-            // const needSelId = needSelData.id
+    // const needSels = function(){
+    //     if(!needSelDatas[0]){return []} 
+    //     else {
+    //     needSelDatas.map((data)=> {
+    //         console.log('data in temp2 map', data)
+    //         console.log('data.id in temp2 map', data.id)
+    //         getNeedSel(data.id, dataExtrapolate)
 
+    //         function dataExtrapolate(needSel){
+    //             console.log('in data exrapolate')
+    //             const title = needSel.title
+    //             const description = needSel.description
+    //             const needSelInfo = {title: title, description: description}
+    //             return needSelInfo
+    //             // needSelDatas.length === needSels.length? newPet(needSels): null
+    //         }     
 
+    //     } 
+    // )}}()
 
-            getNeedSel(needSelDatas[i].id, dataExtrapolate)
-
+    const needSels =needSelDatas.map((data)=> {
+        if(!data){return []}
+        else{
+            
             function dataExtrapolate(needSel){
-                console.log('in data exrapolate')
                 const title = needSel.title
                 const description = needSel.description
                 const needSelInfo = {title: title, description: description}
-                needSels.push(needSelInfo)
-                needSelDatas.length === needSels.length? newPet(needSels): null
-            }     
-            
+                return needSelInfo
+
+                // needSelDatas.length === needSels.length? newPet(needSels): null
+            }
+           console.log(getNeedSel(data.id, dataExtrapolate))
+
+            // return getNeedSel(data.id, dataExtrapolate)
           
- 
-        }
-    }          
-    
+
+        } 
+    })
+    needSels
+
+    // newPet(needSels)
 }
+
+

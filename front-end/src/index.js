@@ -189,7 +189,7 @@ function getUser(userId, someFunc ){
 
 function getNeedSel(needSelId, someFunc){
     fetch(`${NEED_SELECTS_URL}/${needSelId}`).then(response => response.json()).then(needSel => {
-        someFunc(needSel.data.attributes)
+        someFunc(needSel.data.attributes)  
     })
 }
 
@@ -203,11 +203,13 @@ function getPet(pet_id, someFunc){
 function getUserData(){
 
     console.log("inside getUserData function")
-    
+    console.log('a')
     fetch(USERS_URL).then(response => response.json()).then(users => {
         const newArr = [... users.data]
+        console.log('b')
         for(const user of newArr){createUserLi(user)}
     })
+    console.log('c')
 }
 
 function creatingUser(){
@@ -422,81 +424,113 @@ function createPetBtnListenter(){
 //     }
 // }
 
-function makePetJSObject(pet){
-    const needSels = []
-    const needSelIds = []
-    const thisPetArr = []
+// function makePetJSObject(pet){
+//     const needSels = []
+//     const needSelIds = []
+//     const thisPetArr = []
 
-   function newPet(needSels){
-        const thisPet = new Pet (petName, petBirth, petUserId, petSpecies)
-        thisPet.petId(pet_id)
-        console.log('thisPet.petId')
-        console.log(thisPet.petId)
-        if(needSels.length > 0){
-            thisPet.addNeedSelectsFromJson(needSels)
-            console.log('thisPet.needSelects')
-            console.log(thisPet.needSelects)
-            console.log('thisPet')
-            console.log(thisPet)
-            thisPetArr.push(thisPet)
-            createPetCard(thisPet)
-        }else{
-            console.log('thisPet w/no needSels')
-            console.log(thisPet)
-            createPetCard(thisPet)
-        }
-    }
-    // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
-    const attr = pet.attributes    
-    const pet_id = pet.id    
-    const petName = attr.name    
-    const petBirth = attr.birthday
-    const petSpecies = attr.species
-    const petUserId = attr.user_id
-    const needSelDatas = pet.relationships.need_selections.data
+//     const attr = pet.attributes    
+//     const pet_id = pet.id    
+//     const petName = attr.name    
+//     const petBirth = attr.birthday
+//     const petSpecies = attr.species
+//     const petUserId = attr.user_id
+//     const needSelDatas = pet.relationships.need_selections.data
 
+//     // myArr.addListener('add', (items) => {
+//     // })
+
+//    function newPet(needSels){
+//         const thisPet = new Pet (petName, petBirth, petUserId, petSpecies)
+//         thisPet.petId(pet_id)
+//         console.log('thisPet.petId')
+//         console.log(thisPet.petId)
+//         if(needSels.length > 0){
+//             thisPet.addNeedSelectsFromJson(needSels)
+//             console.log('thisPet.needSelects')
+//             console.log(thisPet.needSelects)
+//             console.log('thisPet')
+//             console.log(thisPet)
+//             thisPetArr.push(thisPet)
+//             createPetCard(thisPet)
+//         }else{
+//             console.log('thisPet w/no needSels')
+//             console.log(thisPet)
+//             createPetCard(thisPet)
+//         }
+//     }
+//     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
+   
+
+//     console.log('needSelIds',needSelIds)
+//     for(i = 0; i < needSelDatas.length; i++ ){
+//         console.log('data group:')
+   
+//         console.log('needSelDatas.length', needSelDatas.length)
+//         console.log('needSels.length', needSels.length)
+//         // needSelIds.addEventListener('change', ()=>{needSelIds.length === needSelDatas.length ? gettingNeedSelData(): null})
+//         if(needSelDatas.length === needSels.length){console.log('needSelData is equal', needSelData);
+//             return newPet(needSels)
+//         }else{
+//             let needSelData = needSelDatas[i]
+//             console.log('is there an id?:')
+//             console.log('needselData', needSelData)
+//             console.log('needSelData.id', needSelData.id)
+//             const needSelId = needSelData.id
+//             // // needSelIds.push(needSelId)
+
+//             getNeedSel(needSelId, dataExtrapolate)
+
+//             function dataExtrapolate(needSel){
+//                 const title = needSel.title
+//                 const description = needSel.description
+//                 const needSelInfo = {title: title, description: description}
+//                 needSels.push(needSelInfo)
+//                 // if(needSelDatas.length === needSels.length){
+//                 //     return newPet(needSels)
+//                 // }
+//                 // newPet(needSels)
+//             }     
+
+//         //     // getNeedSel(needSelId, dataExtrapolate)
+
+//         //     // function dataExtrapolate(needSel){
+//         //     //     const title = needSel.title
+//         //     //     const description = needSel.description
+//         //     //     const needSelInfo = {title: title, description: description}
+//         //     //     needSels.push(needSelInfo)
+//         //     //     console.log('needSels', needSels)
+//         //     //     if(needSelDatas.length === i){
+//         //     //         return newPet(needSels)
+//         //     //     }
+//         //     //     // newPet(needSels)
+//         //     // }     
+//         }
+//     }
+//         // function gettingNeedSelData(){
+//         //     for(const needSelId of needSelIds){
+
+//         //         getNeedSel(needSelId, dataExtrapolate)
+
+//         //         function dataExtrapolate(needSel){
+//         //             const title = needSel.title
+//         //             const description = needSel.description
+//         //             const needSelInfo = {title: title, description: description}
+//         //             needSels.push(needSelInfo)
+//         //             if(needSelDatas.length === needSels.length){
+//         //                 return newPet(needSels)
+//         //             }
+//         //             // newPet(needSels)
+//         //         }                    
+//         //     }
+
+//         // }
+        
+            
+        
     
-    for(i = 0; i <= needSelDatas.length+1; i++ ){
-        let needSelData = needSelDatas[i]
-        if(!needSelData){
-            return newPet(needSels)
-        }else{
-            const needSelId = needSelData.id
-            needSelIds.push(needSelId)
-
-            // getNeedSel(needSelId, dataExtrapolate)
-
-            // function dataExtrapolate(needSel){
-            //     const title = needSel.title
-            //     const description = needSel.description
-            //     const needSelInfo = {title: title, description: description}
-            //     needSels.push(needSelInfo)
-            //     console.log('needSels', needSels)
-            //     if(needSelDatas.length === i){
-            //         return newPet(needSels)
-            //     }
-            //     // newPet(needSels)
-            // }     
-
-            for(const needSelId of needSelIds){
-
-                getNeedSel(needSelId, dataExtrapolate)
-
-                function dataExtrapolate(needSel){
-                    const title = needSel.title
-                    const description = needSel.description
-                    const needSelInfo = {title: title, description: description}
-                    needSels.push(needSelInfo)
-                    if(needSelDatas.length === i){
-                        return newPet(needSels)
-                    }
-                    // newPet(needSels)
-                }                    
-            }
-        }
-    }
     
-}
+// }
 
 
 
@@ -549,11 +583,33 @@ function createPetCard(pet){
     nullOption.value = ""
     needDropdown.appendChild(nullOption)
 
+    // pet.needSelects.addEventListener('change', () => {
+    //     let currentList = Object.values(needDropdown.childNodes)
+    //     currentList.map(needSel => needSel.remove())
+
+        
+
+    // })
+
     for(const needSel of pet.needSelects){
         // may need to create new variables from fetch request
         const newOption = document.createElement('option')
         newOption.value = needSel.title
         newOption.innerText = `${needSel.title}; ${needSel.description}`
+        newOption.setAttribute('class', 'need-select')
+        needDropdown.appendChild(newOption)
+    }
+
+    // function clearCardDeck(){
+    //     let currentList = Object.values(document.getElementsByClassName('card'))
+    //     currentList.map(card => card.remove())
+    // }
+    for(const needSel of pet.needSelects){
+        // may need to create new variables from fetch request
+        const newOption = document.createElement('option')
+        newOption.value = needSel.title
+        newOption.innerText = `${needSel.title}; ${needSel.description}`
+        newOption.setAttribute('class', 'need-select')
         needDropdown.appendChild(newOption)
     }
 
