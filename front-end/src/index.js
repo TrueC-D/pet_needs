@@ -244,6 +244,22 @@ function createUserLi(user){
     
 }
 
+// Tried to have event lister specifically respond to the tex rather than the whole li, so that it wouldn't interfere with deleteli, but that didn't change anything
+
+// function createUserLi(user){
+//     const userLink = document.createElement('li')
+//     userLink.setAttribute('class', 'clickable')
+//     userLink.setAttribute('id', `user-${user.id}`)
+//     const userText = document.createElement('span')
+//     userText.innerText = user.attributes.name
+//     userLink.appendChild(userText)
+//     document.getElementById('user-links').appendChild(userLink)
+//     createDeleteLiButton('user', user.id)
+//     userText.addEventListener('click', function(){loadUserPage(user.id)})
+//     userLink.addEventListener('click', selectUser)
+    
+// }
+
 function selectUser(event){
     console.log("Event target:")
     console.log(event.target)
@@ -369,169 +385,53 @@ function createPetBtnListenter(){
 
 }
 
-// function makePetJSObject(pet){
-//     const needSels = []
-//     const needSelIds = []
+function makePetJSObject(pet){
+    const thisPetArr = []
+    const attr = pet.attributes    
+    const pet_id = pet.id    
+    const petName = attr.name    
+    const petBirth = attr.birthday
+    const petSpecies = attr.species
+    const petUserId = attr.user_id
+    const needSelData = pet.relationships.need_selections.data
 
-//    function newPet(needSels){
-//         const thisPet = new Pet (petName, petBirth, petSpecies, petUserId)
-//         thisPet.petId(pet_id)
-//         console.log('thisPet.petId')
-//         console.log(thisPet.petId)
-//         if(needSels.length > 0){
-//             thisPet.addNeedSelectsFromJson(needSels).then(createPetCard(thisPet)))
-//             console.log('thisPet.needSelects')
-//             console.log(thisPet.needSelects)
-//             console.log('thisPet')
-//             console.log(thisPet)
-//             // createPetCard(thisPet)
-//         }else{
-//             console.log('thisPet w/no needSels')
-//             console.log(thisPet)
-//             createPetCard(thisPet)
-//         }
-//     }
-//     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
-//     const attr = pet.attributes    
-//     const pet_id = pet.id    
-//     const petName = attr.name    
-//     const petBirth = attr.birthday
-//     const petSpecies = attr.species
-//     const petUserId = attr.user_id
-//     const needSelDatas = pet.relationships.need_selections.data
+   function newPet(needSelData){
+        const thisPet = new Pet (petName, petBirth, petUserId, petSpecies)
+        thisPet.petId(pet_id)
+        console.log('thisPet.petId')
+        console.log(thisPet.petId)
+        console.log(thisPet)
+        createNeedSels(thisPet, needSelData)
+    }
 
-//     if(needSelDatas.length < 1){
-//         newPet(needSels)
-//     }else {
-//         for(const needSelData of needSelDatas){
-
-//             const needSelId = needSelData.id
-//             needSelIds.push(needSelId)
-
-//             for(const needSelId of needSelIds){
-
-//                 getNeedSel(needSelId, dataExtrapolate)
-
-//                 function dataExtrapolate(needSel){
-//                     const title = needSel.title
-//                     const description = needSel.description
-//                     const needSelInfo = {title: title, description: description}
-//                     needSels.push(needSelInfo)
-//                     newPet(needSels)
-//                 }                    
-//             }  
-//         }
-//     }
-// }
-
-// function makePetJSObject(pet){
-//     const needSels = []
-//     const needSelIds = []
-//     const thisPetArr = []
-
-//     const attr = pet.attributes    
-//     const pet_id = pet.id    
-//     const petName = attr.name    
-//     const petBirth = attr.birthday
-//     const petSpecies = attr.species
-//     const petUserId = attr.user_id
-//     const needSelDatas = pet.relationships.need_selections.data
-
-//     // myArr.addListener('add', (items) => {
-//     // })
-
-//    function newPet(needSels){
-//         const thisPet = new Pet (petName, petBirth, petUserId, petSpecies)
-//         thisPet.petId(pet_id)
-//         console.log('thisPet.petId')
-//         console.log(thisPet.petId)
-//         if(needSels.length > 0){
-//             thisPet.addNeedSelectsFromJson(needSels)
-//             console.log('thisPet.needSelects')
-//             console.log(thisPet.needSelects)
-//             console.log('thisPet')
-//             console.log(thisPet)
-//             thisPetArr.push(thisPet)
-//             createPetCard(thisPet)
-//         }else{
-//             console.log('thisPet w/no needSels')
-//             console.log(thisPet)
-//             createPetCard(thisPet)
-//         }
-//     }
-//     // responsible for converting json object in to pet = new Pet along with calling getNeedSel Method to fetch and transform needSelect json into a usable array.
-   
-
-//     console.log('needSelIds',needSelIds)
-//     for(i = 0; i < needSelDatas.length; i++ ){
-//         console.log('data group:')
-   
-//         console.log('needSelDatas.length', needSelDatas.length)
-//         console.log('needSels.length', needSels.length)
-//         // needSelIds.addEventListener('change', ()=>{needSelIds.length === needSelDatas.length ? gettingNeedSelData(): null})
-//         if(needSelDatas.length === needSels.length){console.log('needSelData is equal', needSelData);
-//             return newPet(needSels)
-//         }else{
-//             let needSelData = needSelDatas[i]
-//             console.log('is there an id?:')
-//             console.log('needselData', needSelData)
-//             console.log('needSelData.id', needSelData.id)
-//             const needSelId = needSelData.id
-//             // // needSelIds.push(needSelId)
-
-//             getNeedSel(needSelId, dataExtrapolate)
-
-//             function dataExtrapolate(needSel){
-//                 const title = needSel.title
-//                 const description = needSel.description
-//                 const needSelInfo = {title: title, description: description}
-//                 needSels.push(needSelInfo)
-//                 // if(needSelDatas.length === needSels.length){
-//                 //     return newPet(needSels)
-//                 // }
-//                 // newPet(needSels)
-//             }     
-
-//         //     // getNeedSel(needSelId, dataExtrapolate)
-
-//         //     // function dataExtrapolate(needSel){
-//         //     //     const title = needSel.title
-//         //     //     const description = needSel.description
-//         //     //     const needSelInfo = {title: title, description: description}
-//         //     //     needSels.push(needSelInfo)
-//         //     //     console.log('needSels', needSels)
-//         //     //     if(needSelDatas.length === i){
-//         //     //         return newPet(needSels)
-//         //     //     }
-//         //     //     // newPet(needSels)
-//         //     // }     
-//         }
-//     }
-//         // function gettingNeedSelData(){
-//         //     for(const needSelId of needSelIds){
-
-//         //         getNeedSel(needSelId, dataExtrapolate)
-
-//         //         function dataExtrapolate(needSel){
-//         //             const title = needSel.title
-//         //             const description = needSel.description
-//         //             const needSelInfo = {title: title, description: description}
-//         //             needSels.push(needSelInfo)
-//         //             if(needSelDatas.length === needSels.length){
-//         //                 return newPet(needSels)
-//         //             }
-//         //             // newPet(needSels)
-//         //         }                    
-//         //     }
-
-//         // }
-        
-            
-        
+    newPet(needSelData)
+}
     
-    
-// }
 
+
+function createNeedSels(thisPet, needSelData) {
+    let itemsProcessed = 0
+    const needSels = needSelData.forEach((data, index, array)=> {
+        console.log('data', data)
+        if(data.id){
+            function dataExtrapolate(needSel){
+                itemsProcessed++
+                const title = needSel.title
+                const description = needSel.description
+                thisPet.addToNeedSelects(title, description)
+                console.log('thisPet.needSelects', thisPet.needSelects)
+                if(itemsProcessed === array.length){createPetCard(thisPet)}
+            }
+
+
+            getNeedSel(data.id, dataExtrapolate)
+          
+
+        } 
+    })
+    needSels
+
+}
 
 
 function clearCardDeck(){
@@ -583,27 +483,6 @@ function createPetCard(pet){
     nullOption.value = ""
     needDropdown.appendChild(nullOption)
 
-    // pet.needSelects.addEventListener('change', () => {
-    //     let currentList = Object.values(needDropdown.childNodes)
-    //     currentList.map(needSel => needSel.remove())
-
-        
-
-    // })
-
-    for(const needSel of pet.needSelects){
-        // may need to create new variables from fetch request
-        const newOption = document.createElement('option')
-        newOption.value = needSel.title
-        newOption.innerText = `${needSel.title}; ${needSel.description}`
-        newOption.setAttribute('class', 'need-select')
-        needDropdown.appendChild(newOption)
-    }
-
-    // function clearCardDeck(){
-    //     let currentList = Object.values(document.getElementsByClassName('card'))
-    //     currentList.map(card => card.remove())
-    // }
     for(const needSel of pet.needSelects){
         // may need to create new variables from fetch request
         const newOption = document.createElement('option')
