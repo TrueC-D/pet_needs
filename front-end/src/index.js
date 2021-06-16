@@ -59,11 +59,37 @@ class Pet {
     async init(){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item        
         for await (let needSelect of this.initNeedSelects()){
-            createNeedSelection(this.petId, needSelect.title, needSelect.description)
-            this.addToNeedSelects(needSelect.title, needSelect.description)
-            
-        }
+            createNeedSelection(this, needSelect.title, needSelect.description)
+            // this.addToNeedSelects(needSelect.title, needSelect.description)
+        }        
     }
+
+    // init(){
+    //     let itemsProcessed = 0
+    //     for (const needSelect of this.initNeedSelects()){
+    //         createNeedSelection(this, needSelect.title, needSelect.description)
+    //         this.addToNeedSelects(needSelect.title, needSelect.description)
+    //         if(itemsProcessed === this.initNeedSelects.length){
+    //             createPetCard(this)
+    //         } 
+    //     }
+    // }
+
+    // init(){
+    //     let itemsProcessed = 0
+    //     this.initNeedSelects().forEach((needSelect, index, array) => {
+    //         setTimeout(()=>{
+    //             createNeedSelection(this, needSelect.title, needSelect.description)
+    //             this.addToNeedSelects(needSelect.title, needSelect.description)
+    //             if(itemsProcessed === array.length){
+    //                 createPetCard(this)
+    //             }
+    //         }, 4000)
+            
+    //     })
+    //     // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item        
+     
+    // }
 
     addNeedSelectsFromJson(needSelsJson){
         // you want to set this instead of initializing when you are pulling from an already established pet
@@ -83,7 +109,7 @@ class Pet {
 
     addNeedSel(title, description){
         // this calls the function that has the fetch request for the needselect.  This can be used for adding individual needs later.
-        createNeedSelection(this.petId, title, description)
+        createNeedSelection(this, title, description)
         this.addToNeedSelects(title, description)
     }
 }
@@ -166,9 +192,23 @@ class Dog extends PetWithACoat {
 
 // creating need selections
 
-function createNeedSelection(pet_id, title, description){
+// async function createNeedSelection(pet, title, description){
+//     console.log('createNeedSelection method pet_id:')
+//     console.log(pet.petId)
+//     console.log('createNeedSelection method title:')
+//     console.log(title)
+//     console.log('createNeedSelection method description:')
+//     console.log(description)
+//    await fetch(NEED_SELECTS_URL, {
+//         method: 'POST',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify({title: title, description: description, pet_id: pet.petId})
+//     }).then(response => response.json())
+// }
+
+function createNeedSelection(pet, title, description){
     console.log('createNeedSelection method pet_id:')
-    console.log(pet_id)
+    console.log(pet.petId)
     console.log('createNeedSelection method title:')
     console.log(title)
     console.log('createNeedSelection method description:')
@@ -176,10 +216,15 @@ function createNeedSelection(pet_id, title, description){
     fetch(NEED_SELECTS_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({title: title, description: description, pet_id: pet_id})
-    }).then(response => response.json()).then(needSelect => {console.log(needSelect)})
-    // if this is called by a for loop how do i have the dom load when complete?
+        body: JSON.stringify({title: title, description: description, pet_id: pet.petId})
+    }).then(response => response.json()).then(data => {
+        pet.addToNeedSelects(title, description);
+        // let initNeed = pet.initNeedSelects()
+        // if(pet.needSelects.length === initNeed.length){createPetCard(pet)}
+    })
 }
+    // if this is called by a for loop how do i have the dom load when complete?
+
 
 //  Simple Fetch Requests
 
