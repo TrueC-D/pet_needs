@@ -2,6 +2,10 @@ Primary purpose:
 
 The primary purpose of this app is to track pet needs and have the ability to record when the need has been met. It does not have this ability yet, but I hope to build this feature after graduation.  
 
+Demo:
+
+
+
 How to load:
 
 Load the pet_file cd into the back-end file.  After makins sure that rails is fully functioning and bundle install has been run you can run 'rails s' which will start the rails server.

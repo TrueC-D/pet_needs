@@ -500,6 +500,22 @@ function createPetCard(pet){
     petName.innerText = pet.name
     card.appendChild(petName)
 
+
+    // const likeCounter = document.createElement('p')
+    // likeCounter.innerText = 0
+    // card.appendChild(likeCounter)
+
+    // function updateLikes(){
+    //     let prevLike = likeCounter.innerText
+    //     likeCounter.innerText = parseInt(prevLike)+1
+    // }
+
+
+    // const likebutton = document.createElement('button')
+    // likebutton.innerText = "Like"
+    // card.appendChild(likebutton)
+    // likebutton.addEventListener('click', updateLikes)
+
     const petSpecies = document.createElement('p')
     petSpecies.innerText = `Species: ${pet.species}`
     card.appendChild(petSpecies)
