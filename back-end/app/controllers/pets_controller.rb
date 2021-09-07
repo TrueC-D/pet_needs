@@ -14,6 +14,7 @@ class PetsController < ApplicationController
     end
 
     def create
+        # need to change controller to receive params differently.  if species is within labeled type of species, appropriate need selections need to be created w/validations.
         user = User.find_by(id: params[:user_id])
         if user && !(Pet.find_by(name: params[:name]))
             pet = Pet.create(name: params[:name], species: params[:species], birthday: params[:birthday], user_id: params[:user_id])
