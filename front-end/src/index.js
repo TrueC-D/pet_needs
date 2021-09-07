@@ -55,7 +55,7 @@ class Pet {
         ]
         return this.initNeedSelects
     }
-
+// I will remove this async init and adjust things to work otherwise
     async init(){
         // this instantiates the default needSelections that every pet should have by calling addNeedSelect on every item        
         for await (let needSelect of this.initNeedSelects()){
