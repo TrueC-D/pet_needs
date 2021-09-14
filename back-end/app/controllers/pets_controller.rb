@@ -55,8 +55,11 @@ class PetsController < ApplicationController
 
     private 
 
-    def create_pet(species)
-        
+    def create_pet(species, need_sel_method)
+        pet = Pet.create(name: params[:name], species: species, birthday: params[:birthday], user_id: params[:user_id])
+        # separate create & save methods, make sure it saved after validations
+        # 
+        # render json: PetSerializer.new(pet)
 
     end
 end
