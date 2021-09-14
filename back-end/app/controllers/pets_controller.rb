@@ -37,9 +37,11 @@ class PetsController < ApplicationController
                 # method for needselects land animal
             when "PetWithCoat"
                 create_pet(species)
+            when "Other"
+                create_pet(species)
             else 
-                # may need to create other category -> else can be for validation purposes -reject item
-                create_pet(params[:species].captialize)
+                # should be else when nil
+                # return error
             end
 
 
