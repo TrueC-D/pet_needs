@@ -25,6 +25,7 @@ class PetsController < ApplicationController
             when "Dog"
                 create_pet("Dog")
                 # method for needselects dog
+                # rather than have the need select method in the pets model, i think it would be good to have it in the need selects model and call it from here
             when "Cat"
                 create_pet("Cat")
                 # method for needselects cat
