@@ -66,6 +66,7 @@ class PetsController < ApplicationController
                # pattern used in my other app:
             # if user
             #     pet = Pet.new(pet_params)
+            #     #would have to be more specific than this because not all params are used.
             #     if pet.valid?
             #         pet.save
             #         render json: PetSerializer.new(pet)
