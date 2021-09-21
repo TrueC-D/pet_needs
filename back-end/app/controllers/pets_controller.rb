@@ -44,6 +44,15 @@ class PetsController < ApplicationController
                 # return error
             end
 
+            # pattern used in my other app:
+            # if user
+            #     pet = Pet.new(pet_params)
+            #     if pet.valid?
+            #         pet.save
+            #         render json: PetSerializer.new(pet)
+            #     end
+            # end
+
 
 
             # pet = Pet.create(name: params[:name], species: params[:species], birthday: params[:birthday], user_id: params[:user_id])
