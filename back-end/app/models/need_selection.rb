@@ -9,7 +9,7 @@ class NeedSelection < ApplicationRecord
 
   # def vet_visit
   #   this.name = 'Vet Visit'
-  #   this.description = "Going to the vet is necessary for a pet's health."
+  #   this.description = 'Every pet needs to be fed.'
   # end
 
   # def give_water

@@ -7,41 +7,39 @@ class Pet < ApplicationRecord
     # creates dog & need selections
   # end  
 
-  def self.init_pet(pet_params)
-   
+  def self.init_pet
+    {'Feed' => 'Every pet needs to be fed.', 
+    'Vet Visit' => 'Every pet needs to be fed.'}
   end
 
-  def self.init_aquatic_species(pet_params)
-    pet = self.init_pet
-    [NeedSelects.new('clean tank', description, pet.id),
-    NeedSelects.new('check_chemical_levels', description, pet.id),
-    NeedSelects.new('vet visit', description, pet.id),]
+  def self.needs_terrarium
+    self.init_pet.merge({"Clean Terrarium" => "It is hygienic and best for your pet's health if your Terrarium is clean",
+    "Light On" => "Animals in terrariums and aquariums also need a day and night cycle. Turn the light on to start their morning."
+    "Light Off" => "Animals in terrariums and aquariums also need a day and night cycle. Turn the light off to start their evening."}).merge(self.land_animal)
+  end
+  
 
-
-    return pet
-    # NeedSelects
-    # # clean_tank, check_chemical_levels, turn_on_light, turn_off_light
+  def self.init_aquatic_species
+    self.needs_terrarium.merge({"Clean Tank" => "Changing the water in the tank and removing excess waste and algae will help marine life thrive.",
+       "Check Chemical Levels" => "Tank water with the wrong pH levels, or water that is too high in high in nitrates, nitrites and ammonium can harm aquatic animals",
+       ).delete("Clean Terrarium")
   end
 
   # to be continued...
-  def self.land_animal(pet_params)
-    pet = self.init_pet
-    return pet
+  def self.land_animal
+    self.init_pet.merge({'Give Water' => "Pets that don't live in water need to drink water to stay hydrated."})
   end
 
-  def self.pet_with_coat(pet_params)
-    pet = self.land_animal
-    return pet
+  def self.pet_with_coat
+    self.land_animal.merge({"Groom" => "Grooming prevents matts in the coat, rashes and infection."})
   end
 
-  def self.cat(pet_params)
-    pet = self.pet_with_coat
-    return pet
+  def self.cat
+    self.pet_with_coat.merge({"Clean Litter Box" => "A clean litter box helps prevent a messy house and sanitary living environment."})
   end
 
-  def self.dog(pet_params)
-    pet = self.pet_with_coat
-    return pet
+  def self.dog
+    self.pet_with_coat.merge({"Go On Walk" => "Excercise is a must half for a healthy animal."})
   end
 
 end
