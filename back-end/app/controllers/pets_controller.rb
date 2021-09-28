@@ -34,6 +34,9 @@ class PetsController < ApplicationController
                 pet = create_pet(species) 
                 init_need_sels(Pet.aquatic_species)
                 # method for needselects aqua speicies
+            when "Requires a Terrarium"
+                pet = create_pet(species)
+                init_need_sels(Pet.needs_terrarium)
             when "Land Animal"
                 pet = create_pet(species)
                 init_need_sels(Pet.land_animal)
@@ -43,6 +46,7 @@ class PetsController < ApplicationController
                 init_need_sels(Pet.pet_with_coat)
             when "Other"
                 pet = create_pet(species)
+                init_need_sels(Pet.a_pet)
             else 
                 # should be else when nil
                 # return error
