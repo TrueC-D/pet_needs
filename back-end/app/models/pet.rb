@@ -6,4 +6,18 @@ class Pet < ApplicationRecord
   # def dog do 
     # creates dog & need selections
   # end  
+
+  def self.init_pet
+    # self.id
+    # NeedSelects
+    # # feed, vet_visit
+  end
+
+  def self.init_aquatic_species
+    init_pet
+    # NeedSelects
+    # # clean_tank, check_chemical_levels, turn_on_light, turn_off_light
+  end
+
+  # to be continued...
 end
