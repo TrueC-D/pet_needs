@@ -17,37 +17,38 @@ class PetsController < ApplicationController
         # need to change controller to receive params differently.  if species is within labeled type of species, appropriate need selections need to be created w/validations.
         user = User.find_by(id: params[:user_id])
         if user && !(Pet.find_by(name: params[:name]))
+    
             # need to create params[:type]
             # if params[:type] == 
             species = params[:species].capitalize
             # may need to validate species
             case params[:type]
             when "Dog"
-                create_pet("Dog")
-                # method for needselects dog
-                # rather than have the need select method in the pets model, i think it would be good to have it in the need selects model and call it from here
+                pet = create_pet("Dog")
+                init_need_sels(Pet.dog)
             when "Cat"
-                create_pet("Cat")
+                pet = create_pet("Cat")
+                init_need_sels(Pet.cat) 
                 # method for needselects cat
-            when "AquaticSpecies"
-                create_pet(species)
+            when "Aquatic Species"
+                pet = create_pet(species) 
+                init_need_sels(Pet.aquatic_species)
                 # method for needselects aqua speicies
-            when "LandAnimal"
-                create_pet(species)
+            when "Land Animal"
+                pet = create_pet(species)
+                init_need_sels(Pet.land_animal)
                 # method for needselects land animal
-            when "PetWithCoat"
-                create_pet(species)
+            when "Pet With A Coat"
+                pet = create_pet(species)
+                init_need_sels(Pet.pet_with_coat)
             when "Other"
-                create_pet(species)
+                pet = create_pet(species)
             else 
                 # should be else when nil
                 # return error
             end
 
-
-
-            # pet = Pet.create(name: params[:name], species: params[:species], birthday: params[:birthday], user_id: params[:user_id])
-            # render json: PetSerializer.new(pet)
+            render json: PetSerializer.new(pet)
         end
     end
 
@@ -58,7 +59,12 @@ class PetsController < ApplicationController
     private 
 
     def create_pet(species, need_sel_method)
-        pet = Pet.create(name: params[:name], species: species, birthday: params[:birthday], user_id: params[:user_id])
+        pet = Pet.new(name: params[:name], species: species, birthday: params[:birthday], user_id: params[:user_id])
+        if pet.valid?
+            pet.save
+        end
+        return pet
+
         # separate create & save methods, make sure it saved after validations
         # 
         # render json: PetSerializer.new(pet)
@@ -72,6 +78,10 @@ class PetsController < ApplicationController
             #         render json: PetSerializer.new(pet)
             #     end
             # end
+
+    end
+    def init_need_sels(need_sels)
+        # loop through array of hashes, creating validating and saving each new need select
 
     end
 

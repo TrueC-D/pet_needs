@@ -7,39 +7,39 @@ class Pet < ApplicationRecord
     # creates dog & need selections
   # end  
 
-  def self.init_pet
-
-    # self.id
-    # create pet
-    # NeedSelects
-    # # feed, vet_visit
-    return pet
+  def self.init_pet(pet_params)
+   
   end
 
-  def self.init_aquatic_species
+  def self.init_aquatic_species(pet_params)
     pet = self.init_pet
+    [NeedSelects.new('clean tank', description, pet.id),
+    NeedSelects.new('check_chemical_levels', description, pet.id),
+    NeedSelects.new('vet visit', description, pet.id),]
+
+
     return pet
     # NeedSelects
     # # clean_tank, check_chemical_levels, turn_on_light, turn_off_light
   end
 
   # to be continued...
-  def self.land_animal
+  def self.land_animal(pet_params)
     pet = self.init_pet
     return pet
   end
 
-  def self.pet_with_coat
+  def self.pet_with_coat(pet_params)
     pet = self.land_animal
     return pet
   end
 
-  def self.cat
+  def self.cat(pet_params)
     pet = self.pet_with_coat
     return pet
   end
 
-  def self.dog
+  def self.dog(pet_params)
     pet = self.pet_with_coat
     return pet
   end
